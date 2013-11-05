@@ -306,14 +306,15 @@ oes_api_fdb_mc_mac_addr_set(
  * @return OES_STATUS_ERROR general error.
  */
  
-oes_status_e oes_api_fdb_mc_mac_addr_get(
-                                        int br_id,
-                                        unsigned short vid,
-                                        struct ether_addr mc_addr,
-                                        unsigned long * log_port_list_p
-                                        unsigned short  *    port_cnt_p,
-                                        void * fdb_mc_mac_addr_vs_ext
-                                        ):
+oes_status_e 
+oes_api_fdb_mc_mac_addr_get(
+                           int br_id,
+                           unsigned short vid,
+                           struct ether_addr mc_addr,
+                           unsigned long * log_port_list_p
+                           unsigned short  *    port_cnt_p,
+                           void * fdb_mc_mac_addr_vs_ext
+                           ):
 
 
 /**
@@ -327,10 +328,11 @@ oes_status_e oes_api_fdb_mc_mac_addr_get(
  * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
  * @return OES_STATUS_ERROR general error.
  */
-oes_status_e oes_api_fdb_uc_flush_set(
-                                     int br_id,
-                                     void * fdb_uc_flush_vs_ext
-                                     );
+oes_status_e 
+oes_api_fdb_uc_flush_set(
+                        int br_id,
+                        void * fdb_uc_flush_vs_ext
+                        );
 
 /**
  *  This function deletes the FDB table entries that are related
@@ -566,7 +568,7 @@ oes_status_e
 oes_api_fdb_port_learn_mode_get(
                                int br_id,
                                unsigned long log_port,
-                               enum oes_fdb_learn_mode_e *learn_mode_p,
+                               enum oes_fdb_learn_mode *learn_mode_p,
                                void * fdb_port_learn_mode_set_vs_ext
                                );
 

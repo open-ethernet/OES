@@ -75,7 +75,7 @@ oes_api_stp_log_verbosity_level_get(int   * verbosity_level_p);
 oes_status_e
 oes_api_stp_mode_set(
                      int br_id, 
-                     oes_stp_mode_e mode, 
+                     enum oes_stp_mode mode, 
                      void * stp_mode_vs_ext
                      );
 
@@ -95,7 +95,7 @@ oes_api_stp_mode_set(
 oes_status_e
 oes_api_stp_mode_get(
                      int br_id, 
-                     oes_stp_mode_e *mode_p, 
+                     enum oes_stp_mode *mode_p, 
                      void * stp_mode_vs_ext
                      );
 
@@ -118,7 +118,7 @@ oes_api_stp_mode_get(
 oes_status_e
 oes_api_stp_msti_set(
                      int br_id, 
-                     oes_access_cmd_e access_cmd, 
+                     enum oes_access_cmd access_cmd, 
                      unsigned short inst_id, 
                      void * stp_msti_vs_ext
                      );
@@ -143,7 +143,7 @@ oes_api_stp_msti_set(
 oes_status_e
 oes_api_stp_msti_vlan_list_set(
                                int br_id, 
-                               oes_access_cmd_e access_cmd, 
+                               enum oes_access_cmd access_cmd, 
                                unsigned char inst_id, 
                                unsigned short vlan_list[],
                                unsigned short vlan_num, 
@@ -204,7 +204,7 @@ oes_api_stp_msti_port_state_set(
                                 int br_id, 
                                 unsigned char inst_id, 
                                 oes_port_id_t port_id,
-                        		oes_mstp_inst_port_state_e port_state,
+                        		enum oes_mstp_inst_port_state port_state,
                                 void * stp_msti_port_vs_ext
                         		);
 

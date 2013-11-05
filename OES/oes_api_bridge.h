@@ -81,7 +81,7 @@ oes_api_bridge_set(
 
  /**
  * This function retrives all  bridge active.
- * @param[out] br_id- arry of bridge ID .
+ * @param[out] br_id_list - arry of bridge ID .
  * @param[in,out] br_cnt  brigde arry size .
  * @param[in,out] bridge_vs_ext- vendor specific extention 
  * 
@@ -98,8 +98,9 @@ oes_api_bridge_get(
 		          );
 
 /**
- * This function adds ports to a bridge  
- * @param[in] br_id bridge id 
+ * This function adds ports to a bridge 
+ *  
+ * @param[in] br_id - bridge id 
  * @param[in] log_port_list - List of ports.
  * @param[in] port_cnt- port list size 
  * @param[in,out] bridge_port_vs_ext- vendor specific extention 

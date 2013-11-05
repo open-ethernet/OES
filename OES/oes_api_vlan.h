@@ -80,7 +80,7 @@ oes_api_vlan_log_verbosity_level_get(int   * verbosity_level_p);
 oes_status_e 
 oes_api_vlan_ports_set(	
                        int br_id, 
-                       oes_access_cmd_e access_cmd,
+                       enum oes_access_cmd access_cmd,
                        unsigned short vid,
                        unsigned short port_num,
                        struct oes_vlan_port_t * vlan_port_list_p,
@@ -134,7 +134,7 @@ oes_api_vlan_ports_get(
 oes_status_e 
 oes_api_vlan_port_multi_vlan_set(    
                                   int br_id, 
-                                  oes_access_cmd_e access_cmd,
+                                  enum oes_access_cmd access_cmd,
                                   unsigned long	log_port,
                                   unsigned short vlan_num,
                                   struct oes_port_vlans_t * vlan_list_p,
@@ -161,7 +161,7 @@ oes_status_e
 oes_api_vlan_ingr_filter_ports_set(	
                                     int br_id, 
                                     unsigned long log_port,
-                                    oes_ingr_filter_mode_e ingress_filter_state,
+                                    enum oes_ingr_filter_mode ingress_filter_state,
                                     void * vlan_filter_vs_ext
                                     );
 
@@ -182,7 +182,7 @@ oes_status_e
 oes_api_vlan_ingr_filter_ports_get(
                                     int br_id, 
                                     unsigned long log_port,
-                                    oes_ingr_filter_mode_e * ingress_filter_state_p,
+                                    enum oes_ingr_filter_mode * ingress_filter_state_p,
                                     void * vlan_filter_vs_ext
                                     );
 
@@ -206,7 +206,7 @@ oes_api_vlan_ingr_filter_ports_get(
 oes_status_e 
 oes_api_vlan_port_pvid_set(
                              int br_id, 
-                             oes_access_cmd_e access_cmd,
+                             enum oes_access_cmd access_cmd,
                              unsigned long log_port,
                              unsigned short pvid,
                              void * port_pvid_vs_ext
@@ -256,7 +256,7 @@ oes_status_e
 oes_api_vlan_port_accptd_frm_types_set(
                                         int br_id, 
                                         unsigned long log_port,
-                                        oes_vlan_frame_types_e       accptd_frm_types,
+                                        enum oes_vlan_frame_types      accptd_frm_types,
                                         void * accptd_frm_types_vs_ext
                                         );
 
@@ -279,7 +279,7 @@ oes_status_e
 oes_api_vlan_port_accptd_frm_types_get(
                                         int br_id, 
                                         unsigned long log_port,
-                                        oes_vlan_frame_types_e * accptd_frm_types_p,
+                                        enum oes_vlan_frame_types * accptd_frm_types_p,
                                         void * accptd_frm_types_vs_ext
                                         );
 
@@ -343,8 +343,8 @@ oes_status_e
 oes_api_vlan_flood_mode_set(
                              int br_id, 
                              unsigned short vid,
-                             oes_vlan_flood_type_e flood_type, 
-                             oes_vlan_flood_cmd_e flood_cmd, 
+                             enum oes_vlan_flood_type flood_type, 
+                             enum oes_vlan_flood_cmd flood_cmd, 
                              void * vlan_flood_vs_ext
                              );
 
@@ -367,8 +367,8 @@ oes_status_e
 oes_api_vlan_flood_mode_get(
                             int br_id, 
                             unsigned short vid,
-                            oes_vlan_flood_type_e flood_type, 
-                            oes_vlan_flood_cmd_e * flood_cmd_p, 
+                            enum oes_vlan_flood_type flood_type, 
+                            enum oes_vlan_flood_cmd * flood_cmd_p, 
                             void * vlan_flood_vs_ext
                             );
 
@@ -436,7 +436,7 @@ oes_status_e
 oes_api_vlan_qinq_mode_set(
                             int br_id, 
                             unsigned long log_port,	
-                            oes_qinq_mode_e qinq_mode,
+                            enum oes_qinq_mode qinq_mode,
                             void * qinq_mode_vs_ext
                             );
 
@@ -457,7 +457,7 @@ oes_status_e
 oes_api_vlan_qinq_mode_get(
                             int br_id, 
                             unsigned long log_port,	
-                            oes_qinq_mode_e * qinq_mode_p,
+                            enum oes_qinq_mode * qinq_mode_p,
                             void * qinq_mode_vs_ext
                             );
 
@@ -479,7 +479,7 @@ oes_status_e
 oes_api_vlan_qinq_outer_prio_mode_set(
                                       int br_id, 
                                       unsigned long log_port,	
-                                      oes_qinq_outer_prio_mode_e prio_mode,
+                                      enum oes_qinq_outer_prio_mode prio_mode,
                                       void * qinq_prio_mode_vs_ext
                                       );
 
@@ -500,7 +500,7 @@ oes_status_e
 oes_api_vlan_qinq_outer_prio_mode_get(
                                       int br_id, 
                                       unsigned long log_port,	
-                                      oes_qinq_outer_prio_mode_e * qinq_prio_mode_p,
+                                      enum oes_qinq_outer_prio_mode * qinq_prio_mode_p,
                                       void * qinq_prio_mode_vs_ext
                                       );
 
