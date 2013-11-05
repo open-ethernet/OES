@@ -170,7 +170,7 @@ oes_status_e
 oes_api_port_speed_get(
                       int br_id,
                       unsigned long log_port,
-		              oes_port_speed_e  * port_speed_p,
+		              enum oes_port_speed  * port_speed_p,
                       void * port_speed_vs_ext
                       );
 
@@ -237,7 +237,7 @@ oes_status_e
 oes_api_port_phys_loopback_set(
                               int br_ib,
                               unsigned long log_port,
-                              oes_port_phys_loopback_e phys_loopback,
+                              enum oes_port_phys_loopback phys_loopback,
                               void * port_phys_loopback_vs_ext
                               );
 
@@ -278,7 +278,7 @@ oes_status_e
 oes_api_port_state_set(
 		              int br_id,
 		              unsigned long log_port,
-		              oes_port_admin_state_e admin_state,
+		              enum oes_port_admin_state admin_state,
                       void * port_state_vs_ext
                       );
 
@@ -300,8 +300,8 @@ oes_status_e
 oes_api_port_state_get(
 		              int br_id,
 		              unsigned long log_port,
-		              oes_port_admin_state_e * admin_state,
-                      oes_port_oper_state_e * oper_state,
+		              enum oes_port_admin_state * admin_state,
+                      enum oes_port_oper_state * oper_state,
                       void * port_state_vs_ext
                       );
 

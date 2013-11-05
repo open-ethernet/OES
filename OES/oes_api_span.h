@@ -80,7 +80,7 @@ oes_api_span_log_verbosity_level_get(
 oes_status_e 
 oes_api_span_session_set(
                          int br_id,
-                         oes_access_cmd_e	access_cmd,
+                         enum oes_access_cmd	access_cmd,
                          struct oes_span_session_params 	* span_session_params,
                          unsigned char  *	span_session_id,
                          void *  span_session_vs_ext
@@ -127,9 +127,9 @@ oes_api_span_session_get(
 oes_status_e 
 oes_api_span_mirror_set(
                        int br_id,
-	                   oes_access_cmd_e access_cmd,
+	                   enum oes_access_cmd access_cmd,
                        unsigned long log_port,
-	                   oes_mirror_direction_e * mirror_direction,
+	                   enum oes_mirror_direction * mirror_direction,
 	                   unsigned char span_session_id,
                        void *  span_mirror_vs_ext
 	                   );
@@ -153,7 +153,7 @@ oes_status_e
 oes_api_span_mirror_get(
                        int br_id,
                        unsigned long log_port,
-	                   oes_mirror_direction_e * mirror_direction,
+	                   enum oes_mirror_direction * mirror_direction,
 	                   unsigned char * span_session_id,
                        void *  span_mirror_vs_ext
 	                   );
@@ -177,7 +177,7 @@ oes_api_span_mirror_get(
 oes_status_e
 oes_api_span_analyzer_set(
 	                     int br_id,
-	                     oes_access_cmd_e cmd,
+	                     enum oes_access_cmd cmd,
                          unsigned long log_port,
                          unsigned char	span_session_id,
                          void *  span_analyzer_vs_ext
