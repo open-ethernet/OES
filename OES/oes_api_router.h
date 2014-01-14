@@ -44,13 +44,14 @@
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_port_log_verbosity_level_set(
+oes_api_router_log_verbosity_level_set(
                                 int   verbosity_level
                                 );
 
 /**
- * This function gets the log verbosity level ofrouter MODULE
- * @param[out]  verbosity_level_p  port module verbosity level
+ * This function gets the log verbosity level of the router 
+ * MODULE 
+ * @param[out]  verbosity_level router  module verbosity level
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
@@ -58,7 +59,7 @@ oes_port_log_verbosity_level_set(
  */
 oes_status_e
 oes_api_port_log_verbosity_level_get(
-                                    int   * verbosity_level_p
+                                    int   * verbosity_level
                                     );
 
 
