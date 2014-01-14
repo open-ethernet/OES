@@ -182,7 +182,7 @@ oes_api_lag_port_distributor_set(
 oes_status_e 
 oes_api_lag_hash_set(
                     int br_id, 
-			        struct EOS_lag_hash_param *lag_hash_param,
+			        struct eos_lag_hash_param *lag_hash_param,
                     void * lag_hash_vs_ext
                     );
 
