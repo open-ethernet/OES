@@ -582,8 +582,9 @@ oes_api_port_loopback_filter_get(
  * Add - add ports to isolation group (additionally to previous configuration)
  * Delete - remove ports from isolation group
  * Delete All - empty isolation group
- * @param[in] br_id -bridge ID 
- * @param[in] access_cmd - SET/ADD/DELETE/DELETE_ALL
+ * 
+ * @param[in] access_cmd - SET/ADD/DELETE/DELETE_ALL 
+ * @param[in] br_id -bridge ID  
  * @param[in] log_port - Logical Port ID.
  * @param[in] isolated_port_list - list of logical ports
  * @param[in] port_cnt - number of logical ports in the list
@@ -596,20 +597,20 @@ oes_api_port_loopback_filter_get(
  */
 oes_status_e
 oes_api_port_isolation_set(
-		                int br_id,
-		                enum oes_access_cmd	access_cmd,
-		                unsigned long  log_port,
-		                unsigned long  isolated_port_list[],
-		                unsigned short port_cnt,
-                        void * port_isolation_vs_ext
-		                );
+		                  enum oes_access_cmd	access_cmd,
+                          int br_id,
+		                  unsigned long  log_port,
+		                  unsigned long  isolated_port_list[],
+		                  unsigned short port_cnt,
+                          void * port_isolation_vs_ext
+		                  );
 
 /**
  * This function retrieves the isolation group of the port (a list of ports from which
  * traffic should not be transmitted to log_port). 
- *  
- * @param[in] br_id - Bridge id
- * @param[in] log_port - Logical Port ID.
+ * 
+ * @param[in] log_port - Logical Port ID. 
+ * param[in] br_id - Bridge id 
  * @param[out] log_port_list - list of logical ports
  * @param[in,out] port_cnt - In: arry size Out: Number of 
  * Logical Ports in the isolation group.
@@ -620,13 +621,13 @@ oes_api_port_isolation_set(
  */
 
 oes_status_e
-oes_api_port_isolation_set(
-		                int br_id,
-		                enum oes_access_cmd	access_cmd,
-		                unsigned long  log_port,
-		                unsigned long  isolated_port_list[],
-		                unsigned short * port_cnt,
-                        void * port_isolation_vs_ext
-		                );
+oes_api_port_isolation_get(
+		                  enum oes_access_cmd	access_cmd,
+                          int br_id,
+		                  unsigned long  log_port,
+		                  unsigned long  isolated_port_list[],
+		                  unsigned short * port_cnt,
+                          void * port_isolation_vs_ext
+		                  );
 
 #endif /* __EOS_API_PORT_H__ */
