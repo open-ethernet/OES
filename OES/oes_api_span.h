@@ -45,7 +45,7 @@
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_fdb_span_verbosity_level_set(
+oes_api_span_verbosity_level_set(
                                 int   verbosity_level
                                 );
 
@@ -79,11 +79,11 @@ oes_api_span_log_verbosity_level_get(
  */
 oes_status_e 
 oes_api_span_session_set(
-                         int br_id,
-                         enum oes_access_cmd	access_cmd,
-                         struct oes_span_session_params 	* span_session_params,
-                         unsigned char  *	span_session_id,
-                         void *  span_session_vs_ext
+                        int br_id,
+                        enum oes_access_cmd access_cmd,
+                        struct oes_span_session_params 	* span_session_params,
+                        unsigned char  * span_session_id,
+                        void *  span_session_vs_ext
 	                    );
 
 
