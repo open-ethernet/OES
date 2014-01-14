@@ -48,7 +48,7 @@ oes_fdb_log_verbosity_level_set(
 
 /**
  * This function gets the log verbosity level of FDB MODULE
- * @param[out]  verbosity_level_p  - FDB module verbosity level
+ * @param[out]  verbosity_level  - FDB module verbosity level
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
@@ -56,7 +56,7 @@ oes_fdb_log_verbosity_level_set(
  */
 oes_status_e
 oes_api_fdb_log_verbosity_level_get(
-                                   int   * verbosity_level_p
+                                   int   * verbosity_level
                                    );
 
 /**
@@ -65,7 +65,7 @@ oes_api_fdb_log_verbosity_level_get(
  *  the FDB if they receive no traffic.
  *  
  * @param[in] br_id - Bridge id 
- * @param[out] age_time_p - Time in seconds.
+ * @param[out] age_time - Time in seconds.
  * @param[in,out] fdb_age_time_vs_ext - vendor specific 
  *       extention .
  * 
@@ -87,7 +87,7 @@ oes_api_fdb_age_time_set(
  *  the FDB if they receive no traffic.
  *  
  * @param[in] br_id - Bridge id 
- * @param[out] age_time_p - Time in seconds.
+ * @param[out] age_time- Time in seconds.
  * @param[in,out] fdb_age_time_vs_ext - vendor specific 
  *       extention .
  * @return OES_STATUS_SUCCESS - Operation completes successfully
@@ -97,7 +97,7 @@ oes_api_fdb_age_time_set(
 oes_status_e 
 oes_api_fdb_age_time_get(
                         int br_id,
-                        unsigned int  * age_time_p,
+                        unsigned int  * age_time,
                         void * fdb_age_time_vs_ext
                         );
 
@@ -105,9 +105,9 @@ oes_api_fdb_age_time_get(
  *  This function adds UC MAC and UC LAG MAC entries in the FDB.
  *  currently it support only static mac insertion.
  *  
- * @param[in] br_id - Bridge id 
  * @param[in] access_cmd - add/ delete 
- * @param[in] mac_entry_p - mac record arry pointer . On 
+ * @param[in] br_id - Bridge id  
+ * @param[in] mac_entry_list- mac record arry pointer . On 
  *       deletion, entry_type is DONT_CARE
  * @param[in] mac_cnt - mac record arry size  
  * @param[in] fdb_uc_mac_addr_vs_ext - vendor specific extention
@@ -118,22 +118,20 @@ oes_api_fdb_age_time_get(
  */
 oes_status_e 
 oes_api_fdb_uc_mac_addr_set(
-                           int br_id,
                            enum oes_access_cmd access_cmd,
-                           struct oes_fdb_uc_mac_addr_params * mac_entry_p,
+                           int br_id,
+                           struct oes_fdb_uc_mac_addr_params * mac_entry_list,
                            unsigned short   mac_cnt,
                            void * fdb_uc_mac_addr_vs_ext
                            );
 
 /**
- * This function reads MAC entries from the SW FDB table, which
- * is exact copy of HW DB on any device. The output supports up
- * to OES_FDB_MAX_GET_ENTRIES entries which is currently 64
+ * This function reads MAC entries from the SDK 
  *
  * The function can receive three types of input: 
- * @param[in] br_id - Bridge id  
  * @param[in] access_cmd -  get, get_next, get first 
- * @param[out] mac_entry_p - mac record arry pointer . On 
+ * @param[in] br_id - Bridge id   
+ * @param[out] mac_entry- mac record arry pointer . On 
  *       deletion, entry_type is DONT_CARE
  * @param[in] mac_cnt - mac record arry size  
  * @param[in,out] fdb_uc_mac_addr_vs_ext - vendor specific 
@@ -144,10 +142,10 @@ oes_api_fdb_uc_mac_addr_set(
  */
 oes_status_e 
 oes_api_fdb_uc_mac_addr_get(
-                           int br_id,
                            enum oes_access_cmd access_cmd,
-                           struct oes_fdb_uc_mac_addr_params_t * mac_list_p,
-                           unsigned short  * data_cnt_p,
+                           int br_id,
+                           struct oes_fdb_uc_mac_addr_params * mac_entry_list,
+                           unsigned short  * mac_cnt,
                            void * fdb_uc_mac_addr_vs_ext
                            );
 
@@ -155,7 +153,7 @@ oes_api_fdb_uc_mac_addr_get(
  *  This function counts all MAC entries in SW FDB table (static + dynamic).
  * 
  * @param[in] br_id - Bridge id 
- * @param[out] data_cnt_p - retrieved number of entries 
+ * @param[out] mac_cnt- retrieved number of entries 
  * @param[in,out] fdb_uc_count_vs_ext - vendor specific 
  *       extention
  *  
@@ -166,7 +164,7 @@ oes_api_fdb_uc_mac_addr_get(
 oes_status_e 
 oes_api_fdb_uc_count(
     `               int br_id,
-	                unsigned short  * data_cnt_p,
+	                unsigned short  * mac_cnt,
                     void * fdb_uc_count_vs_ext
                     );
 
@@ -174,7 +172,7 @@ oes_api_fdb_uc_count(
  * This function sets/removes limit on the amount of dynamic MACs learned on port.
  *
  * @param[in] br_id - Bridge id
- * @param[in] cmd - SET/DELETE
+ * @param[in] access_cmd - SET/DELETE
  * @param[in] log_port - logical port ID
  * @param[in] limit - When SET command is used, this is the new limit to set
  *                    (between 0 and OES_FDB_MAX_ENTRIES)
@@ -188,7 +186,7 @@ oes_api_fdb_uc_count(
 oes_status_e
 oes_api_fdb_uc_limit_port_set(
                              int br_id,
-                             enum oes_access_cmd 	cmd,
+                             enum oes_access_cmd 	 access_cmd,
                              unsigned long  log_port,
                              unsigned int		limit,
                              void * fdb_uc_limit_port_vs_ext
@@ -198,7 +196,7 @@ oes_api_fdb_uc_limit_port_set(
  * This function sets/removes limit on the amount of dynamic MACs learned on FID.
  *
  * @param[in] br_id - Bridge id
- * @param[in] cmd - SET/DELETE 
+ * @param[in] access_cmd - SET/DELETE 
  * @param[in] vid - vlan ID 
  * @param[in] limit - When SET command is used, this is the new limit to set
  *                    (between 0 and OES_FDB_MAX_ENTRIES)
@@ -212,7 +210,7 @@ oes_api_fdb_uc_limit_port_set(
 oes_status_e
 oes_api_fdb_uc_limit_vlan_set(
 		                     int br_id,
-                             enum oes_access_cmd 	cmd,
+                             enum oes_access_cmd   access_cmd,
                              unsigned short 	vid,
                              unsigned int		limit,
                              void * fdb_uc_limit_port_vs_ext
@@ -223,7 +221,7 @@ oes_api_fdb_uc_limit_vlan_set(
  *
  * @param[in] br_id - Bridge id 
  * @param[in] log_port - logical port ID
- * @param[out] limit_p - the limit configure on the port 
+ * @param[out] limit- the limit configure on the port 
  * @param[in,out] ffdb_uc_limit_port_vs_ext- vendor specific 
  *       extention
  * 
@@ -235,7 +233,7 @@ oes_status_e
 oes_api_fdb_uc_limit_port_get(
 		                     int br_id,
                              unsigned long  log_port,
-                             unsigned int	*	limit_p,
+                             unsigned int	*	limit,
                              void * fdb_uc_limit_port_vs_ext
                              );
 
@@ -244,7 +242,7 @@ oes_api_fdb_uc_limit_port_get(
  *  
  * @param[in] br_id - Bridge id  
  * @param[in]  vid- Vlan ID 
- * @param[out] limit_p - the limit configure on the port 
+ * @param[out] limit- the limit configure on the port 
  * @param[in,out] fdb_uc_limit_vlan_vs_ext- vendor specific 
  *       extention
  *  
@@ -255,9 +253,8 @@ oes_api_fdb_uc_limit_port_get(
 oes_status_e
 oes_api_fdb_uc_limit_vid_get(
                             int br_id,
-                            enum oes_access_cmd 	cmd,
                             unsigned short	vid,
-                            unsigned int	* limit_p,
+                            unsigned int	* limit,
                             void * fdb_uc_limit_vid_vs_ext
                             );
 
@@ -269,7 +266,7 @@ oes_api_fdb_uc_limit_vid_get(
  *       additional command support
  * @param[in] vid - vlan ID 
  * @param[in] mac_addr - multicast group  MAC address 
- * @param[in] log_port_list_p - a pointer to a port list arry
+ * @param[in] log_port_list- a pointer to a port list arry
  * @param[in] port_cnt - sizeof port list
  * @param[in,out] fdb_mc_mac_addr_vs_ext- vendor specific 
  *       extention
@@ -284,7 +281,7 @@ oes_api_fdb_mc_mac_addr_set(
 	                       enum oes_access_cmd access_cmd,
                            unsigned short vid,
                            struct ether_addr  mc_addr,
-                           unsigned long * log_port_list_p,
+                           unsigned long * log_port_list,
                            unsigned short port_cnt,
                            void * fdb_mc_mac_addr_vs_ext
                            );
@@ -296,7 +293,7 @@ oes_api_fdb_mc_mac_addr_set(
  * @param[in] br_id - bridge id
  * @param[in] vid - vlan ID 
  * @param[in] mac_addr - multicast group  MAC address 
- * @param[out] log_port_list_p - a pointer to a port list arry
+ * @param[out] log_port_list- a pointer to a port list arry
 *  @param[out] port_cnt - sizeof port list
 *  @param[in,out] fdb_mc_mac_addr_vs_ext- vendor specific 
 *        extention
@@ -461,7 +458,7 @@ oes_api_fdb_learn_mode_set(
  * or enable controlled,automatic  learning 
  *  
  * @param[in] br_id - bridge id
- * @param[out] learn_mode_p - enumerator for the following
+ * @param[out] learn_mode- enumerator for the following
  *       values: dont_learn, automatic_learnin, controled_learn,
  * @param[in,out] fdb_learn_mode_set_vs_ext- vendor specific 
  *       extention
@@ -508,7 +505,7 @@ oes_api_fdb_vid_learn_mode_set(
  *  
  *  @param[in] br_id  - bridge id
  *  @param[in] vid   - vlan ID 
- *  @param[out] learn_mode_p - enumerator for the following
+ *  @param[out] learn_mode- enumerator for the following
  *       values: dont_learn, automatic_learnin, controled_learn,
  * @param[in,out] fdb_learn_mode_set_vs_ext- vendor specific 
  *       extention
@@ -555,7 +552,7 @@ oes_api_fdb_port_learn_mode_set(
  *  
  * @param[in] br_id  - bridge id
  * @param[in] log_port  - logical port ID 
- * @param[out] learn_mode_p - enumerator for the following
+ * @param[out] learn_mode- enumerator for the following
  *       values: dont_learn, automatic_learnin, controled_learn,
  * @param[in,out] fdb_port_learn_mode_set_vs_ext- vendor 
  *       specific extention
