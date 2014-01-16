@@ -73,9 +73,9 @@ oes_api_port_log_verbosity_level_get(
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
  *       extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully.
- * @return SX_STATUS_PARAM_NULL if parameter is NULL.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully.
+ * @return OES_STATUS_PARAM_NULL if parameter is NULL.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_set(
@@ -93,9 +93,9 @@ oes_api_router_ecmp_hash_params_set(
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
  *       extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully.
- * @return SX_STATUS_PARAM_NULL if parameter is NULL.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully.
+ * @return OES_STATUS_PARAM_NULL if parameter is NULL.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_get(
@@ -115,11 +115,11 @@ oes_api_router_ecmp_hash_params_get(
  * @param[in,out] vrid - Virtual router ID
  * @param[in,out] router_vs_ext- vendor specific extention 
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid. 
- * @return SX_STATUS_NO_RESOURCES if there are no resources to
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
+ * @return OES_STATUS_NO_RESOURCES if there are no resources to
  *         create another router
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_set(
@@ -137,11 +137,11 @@ oes_api_router_set(
  * @param[in] vrid - Virtual router ID
  * @param[in,out] router_vs_ext- vendor specific extention 
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid. 
- * @return SX_STATUS_NO_RESOURCES if there are no resources to
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
+ * @return OES_STATUS_NO_RESOURCES if there are no resources to
  *         create another router
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_get(
@@ -166,11 +166,11 @@ oes_api_router_get(
  * @param[in,out] router_interface_vs_ext- vendor specific 
  *       extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ENTRY_NOT_FOUND if router interface was not added.
- * @return SX_STATUS_NO_RESOURCES if no interface is available to create. 
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ENTRY_NOT_FOUND if router interface was not added.
+ * @return OES_STATUS_NO_RESOURCES if no interface is available to create. 
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_interface_set(
@@ -192,10 +192,10 @@ oes_api_router_interface_set(
  * @param[in,out] router_interface_vs_ext- vendor specific 
  *       extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ENTRY_NOT_FOUND if router interface was not added. 
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ENTRY_NOT_FOUND if router interface was not added. 
+ * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e
@@ -217,10 +217,10 @@ oes_api_router_interface_get(
  * @param[in,out] router_interface_state_vs_ext- vendor specific
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ENTRY_NOT_FOUND if router interface was not added.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ENTRY_NOT_FOUND if router interface was not added.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_interface_state_set(
@@ -241,10 +241,10 @@ oes_api_router_interface_state_set(
  * @param[in,out] router_interface_state_vs_ext- vendor specific
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ENTRY_NOT_FOUND if router interface was not added.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ENTRY_NOT_FOUND if router interface was not added.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_interface_state_set(
@@ -266,9 +266,9 @@ oes_api_router_interface_state_set(
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_interface_mac_set(
@@ -291,9 +291,9 @@ oes_api_router_interface_mac_set(
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
  *       extention 
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_router_interface_mac_get(
@@ -324,10 +324,10 @@ oes_api_router_interface_mac_get(
  *       action(TRAP/DROP/FORWARD) ,activity
  * @param[in,out] router_neigh_vs_ext- vendor specific extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid. 
- * @return SX_STATUS_NO_RESOURCES if no neighbour entry is available to create.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
+ * @return OES_STATUS_NO_RESOURCES if no neighbour entry is available to create.
+ * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
@@ -355,10 +355,10 @@ oes_api_router_neigh_set(
  * @param[in,out] neigh_cnt - array size  
  * @param[in,out] router_neigh_vs_ext- vendor specific extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ENTRY_NOT_FOUND if neighbour was not added.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ENTRY_NOT_FOUND if neighbour was not added.
+ * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
@@ -390,10 +390,10 @@ oes_api_router_neigh_get(
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_NO_RESOURCES if no routes is available to create.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_NO_RESOURCES if no routes is available to create.
+ * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
@@ -423,7 +423,7 @@ oes_api_router_uc_route_set(
  *      should insert the certain unicast route as the first
  *      uc_route_key element in the uc_route_key array ,
  *      uc_route_cnt should be equal to n,
- *      access_cmd should be SX_ACCESS_CMD_GET_NEXT
+ *      access_cmd should be OES_ACCESS_CMD_GET_NEXT
  *  
  * @param[in] access_cmd - GET/GET NEXT/GET FIRST.
  * @param[in] vrid - Virtual Router ID.
@@ -435,9 +435,9 @@ oes_api_router_uc_route_set(
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
 oes_api_router_uc_route_get(
@@ -460,12 +460,12 @@ oes_api_router_uc_route_get(
  * @param[in,out] router_cntr_alloc_vs_ext- vendor specific 
  *       extention
  *  
- * @return SX_STATUS_SUCCESS if operation completes successfully
- * @return SX_STATUS_PARAM_ERROR f any input parameter is 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR f any input parameter is 
  *         invalid.
- * @return SX_STATUS_NO_RESOURCES if no counter is available to 
+ * @return OES_STATUS_NO_RESOURCES if no counter is available to 
  *         create.
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
 oes_api_router_interface_cntr_set(
@@ -484,9 +484,9 @@ oes_api_router_interface_cntr_set(
  * @param[in,out] router_cntr_alloc_vs_ext- vendor specific 
  *       extention
  *
- * @return SX_STATUS_SUCCESS if operation completes successfully. 
- * @return SX_STATUS_PARAM_ERROR if any input parameter is invalid. 
- * @return SX_STATUS_ERROR general error.
+ * @return OES_STATUS_SUCCESS if operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
+ * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
@@ -514,10 +514,10 @@ oes_api_router_interface_cntr_get(
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
 *       extention      
 *
-* @return SX_STATUS_SUCCESS if operation completes successfully. 
-* @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
-* @return SX_STATUS_NO_RESOURCES if no routes is available to create.
-* @return SX_STATUS_ERROR general error.
+* @return OES_STATUS_SUCCESS if operation completes successfully. 
+* @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+* @return OES_STATUS_NO_RESOURCES if no routes is available to create.
+* @return OES_STATUS_ERROR general error.
 */
 
 oes_status_e
@@ -546,11 +546,11 @@ oes_api_router_mc_route_set(
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
 *       extention
 *  
-* @return SX_STATUS_SUCCESS if operation completes successfully.
-* @return SX_STATUS_PARAM_ERORR if any input parameter is 
+* @return OES_STATUS_SUCCESS if operation completes successfully.
+* @return OES_STATUS_PARAM_ERORR if any input parameter is 
 *         invalid.
-* @return SX_STATUS_NOT_FOUND if mc route is not found
-* @return SX_STATUS_ERROR general error.
+* @return OES_STATUS_NOT_FOUND if mc route is not found
+* @return OES_STATUS_ERROR general error.
 */
 
 oes_status_e
@@ -577,10 +577,10 @@ oes_api_router_mc_route_get(
 * @param[in,out] router_mc_egress_rif_vs_ext- vendor specific 
 *       extention
 *  
-* @return SX_STATUS_SUCCESS if operation completes successfully. 
-* @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
-* @return SX_STATUS_NO_RESOURCES if no routes is available to create.
-* @return SX_STATUS_ERROR general error.
+* @return OES_STATUS_SUCCESS if operation completes successfully. 
+* @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+* @return OES_STATUS_NO_RESOURCES if no routes is available to create.
+* @return OES_STATUS_ERROR general error.
 */
 oes_status_e 
 oes_api_router_mc_egress_rif_set(
@@ -609,12 +609,12 @@ oes_api_router_mc_egress_rif_set(
 *       extention
 *  
 *
-* @return SX_STATUS_SUCCESS if operation completes successfully.
-* @return SX_STATUS_CMD_UNSUPPORTED if access command isn't supported.
-* @return SX_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
-* @return SX_STATUS_PARAM_ERROR if any input parameter is invalid.
-* @return SX_STATUS_NO_RESOURCES if no routes is available to create.
-* @return SX_STATUS_ERROR general error.
+* @return OES_STATUS_SUCCESS if operation completes successfully.
+* @return OES_STATUS_CMD_UNSUPPORTED if access command isn't supported.
+* @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
+* @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
+* @return OES_STATUS_NO_RESOURCES if no routes is available to create.
+* @return OES_STATUS_ERROR general error.
 */
 
 oes_status_e 

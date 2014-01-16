@@ -144,6 +144,50 @@ enum oes_ip_version {
 	OES_IPV6,
 };
 
+
+
+enum oes_event{
+	OES_EVENT_ID_FDB,/**< FDB learning and aging event */
+	OES_EVENT_ID_PORT,/**< port up/down*/
+};
+	
+enum oes_l2_packet{
+	OES_PACKET_STP, 				    /**< ETHERNET L2 STP */
+	OES_PACKET_LACP,				    /**< ETHERNET L2 LACP */
+	OES_PACKET_EAPOL,				 	/**< ETHERNET L2 EAPOL */
+	OES_PACKET_LLDP,				    /**< ETHERNET L2 LLDP */
+	OES_PACKET_MMRP,				    /**< ETHERNET L2 MMRP */
+	OES_PACKET_MVRP,				    /**< ETHERNET L2 MVRP */
+	OES_PACKET_RPVST,					/**< ETHERNET L2 RPVST */
+	OES_PACKET_IGMP_TYPE_QUERY,			/**< ETHERNET L2 IGMP QUERY */
+	OES_PACKET_IGMP_TYPE_V1_REPORT,		/**< ETHERNET L2 IGMP V1_REPORT */
+	OES_PACKET_IGMP_TYPE_V2_REPORT,		/**< ETHERNET L2 IGMP V2_REPORT */
+	OES_PACKET_IGMP_TYPE_V2_LEAVE,		/**< ETHERNET L2 IGMP V2_LEAVE */
+	OES_PACKET_IGMP_TYPE_V3_REPORT,		/**< ETHERNET L2 IGMP V3_REPORT */
+	OES_PACKET_PACKET_SAMPLING 			/**< ETHERNET L2 PACKET_SAMPLING */
+    OES_PACKET_TRAP_ACL                 /**< ACL trap   */
+};
+
+enum oes_l3_packet{
+
+	OES_PACKET_ARP_REQUEST,  	/**< ARP REQUEST */
+	OES_PACKET__ARP_RESPONSE,		/**< ARP RESPONSE */
+	OES_PACKET_L3_MTUERROR,	/**< Packet exceed router interface MTU */
+	OES_PACKET_L3_TTLERROR,	/**< Time To Live (TTL) Expired */
+	OES_PACKET_OSPF,
+	OES_PACKET_RIP_V1,
+	OES_PACKET_RIP_V2,
+	OES_PACKET_PIM,
+	OES_PACKET_VRRP,
+	OES_PACKET_RESERVED_MC,
+	OES_PACKET_IPBC,
+	OES_PACKET_L3_RPF,
+	OES_PACKET_L3_ASSERT,
+	OES_PACKET_DHCP,				    /**< ETHERNET DHCP */
+    OES_PACKET_ROUTER_UNICAST_TRAP,
+	OES_PACKET_ROUTER_MULTICAST_TRAP,
+};
+
 /************************************************************************************************************/
 /**************************** struct ************************************************************************/
 union oes_span_type_format {
@@ -174,7 +218,7 @@ struct oes_lag_hash_param {
 };
 
 struct oes_fdb_uc_mac_addr_params {
-	unsigned short   vid;                     /**< Filtering Identifier */
+	unsigned short   vid;                     /**< Vlan id */
 	struct ether_addr mac_addr;                 /**< MAC address */
     unsigned long log_port;                  /**< Logical port */
 	enum oes_fdb_mac_entry_type entry_type;  /**< FDB Entry Type (dynamic/static)*/
@@ -305,14 +349,41 @@ struct oes_mc_route_data {
     unsigned short rif_cnt,
 };
 
-
-
-
 struct oes_mc_router_action {
 	unsigned char  enable_assert;
 	unsigned char  enable_rpf;
 	enum oes_router_action  action; 
 	unsigned char  dec_ttl;					
 };
+
+struct oes_event_info{
+	enum oes_event 		event_id /**<!event ID */
+	union oes_event_data		event_info; /**<! event info */
+};
+
+
+
+
+
+union oes_event_data{
+	struct oes_event_port port_event;/**<! port up/down event data */
+    struct oes_event_port port_event;/**<! FDB  event data */
+};
+
+
+struct oes_event_port {
+	unsigned int       log_port;/**<! logical port */
+	enum oes_port_oper_state port_state;/**<! operational state */
+};
+
+
+struct oes_event_fdb{
+	unsigned short   vid;                     /**< Vlan id */
+	struct ether_addr mac_addr;                 /**< MAC address */
+    unsigned long log_port;                  /**< Logical port */
+};
+
+
+
 
 
