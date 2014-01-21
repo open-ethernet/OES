@@ -43,7 +43,7 @@
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_lag_log_verbosity_level_set(
+oes_api_lag_log_verbosity_level_set(
                                int   verbosity_level
                                );
 

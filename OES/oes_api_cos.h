@@ -49,7 +49,7 @@
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_cos_log_verbosity_level_set(
+oes_api_cos_log_verbosity_level_set(
                                int   verbosity_level
                                );
 
@@ -62,7 +62,7 @@ oes_cos_log_verbosity_level_set(
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_cos_lag_log_verbosity_level_get(
+oes_api_cos_log_verbosity_level_get(
                                    int   * verbosity_level_p
                                    );
 

@@ -193,7 +193,8 @@ oes_api_fdb_uc_limit_port_set(
                              );
 
 /**
- * This function sets/removes limit on the amount of dynamic MACs learned on FID.
+ * This function sets/removes limit on the amount of dynamic 
+ * MACs learned on VID. 
  *
  * @param[in] br_id - Bridge id
  * @param[in] access_cmd - SET/DELETE 
@@ -238,7 +239,8 @@ oes_api_fdb_uc_limit_port_get(
                              );
 
 /**
- * This function returns the maximum amount of dynamic MACs that can be learned on FID. 
+ * This function returns the maximum amount of dynamic MACs that 
+ * can be learned on VID. 
  *  
  * @param[in] br_id - Bridge id  
  * @param[in]  vid- Vlan ID 
@@ -354,7 +356,7 @@ oes_api_fdb_uc_flush_port_set(
 
 /**
  * This function deletes all FDB table entries that were 
- * learnedon the flushed FID 
+ * learnedon the flushed VID
  *  
  * @param[in] br_id - bridge id 
  * @param[in] vid- vlan ID
@@ -375,7 +377,7 @@ oes_api_fdb_uc_flush_vid_set(
 
 /**
  * This function deletes all FDB table entries that were 
- * learnedon the flushed FID and port. 
+ * learnedon the flushed VID and port. 
  *  
  * @param[in] br_id - bridge id 
  * @param[in] vid- vlan ID 
@@ -415,7 +417,7 @@ oes_api_fdb_mc_flush_all_set(
 
 /**
  * This function deletes all FDB MC table entries that 
- * werelearned on the flushed FID, on a switch partition. 
+ * werelearned on the flushed VID, on a switch partition. 
  *  
  * @param[in] br_id - bridge id 
  * @param[in] vid - Vlan ID 

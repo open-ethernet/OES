@@ -25,7 +25,7 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE. 
 */
- 
+
 #ifndef __EOS_API_ROUTER_H__
 #define __EOS_API_ROUTER_H__
 
@@ -45,8 +45,8 @@
  */
 oes_status_e
 oes_api_router_log_verbosity_level_set(
-                                int   verbosity_level
-                                );
+                                      int   verbosity_level
+                                      );
 
 /**
  * This function gets the log verbosity level of the router 
@@ -71,7 +71,7 @@ oes_api_port_log_verbosity_level_get(
  * @param[in] oes_router_ecmp_hash_fields - ECMP hash 
  *       configuration.
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
- *       extention
+ *       extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully.
  * @return OES_STATUS_PARAM_NULL if parameter is NULL.
@@ -79,7 +79,7 @@ oes_api_port_log_verbosity_level_get(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_set(
-					               struct oes_router_ecmp_hash_fields * ecmp_hash_params,
+                                   struct oes_router_ecmp_hash_fields * ecmp_hash_params,
                                    void * router_ecmp_hash_vs_ext
                                    );
 
@@ -91,7 +91,7 @@ oes_api_router_ecmp_hash_params_set(
  * @param[out] oes_router_ecmp_hash_fields - ECMP hash 
  *       configuration.
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
- *       extention
+ *       extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully.
  * @return OES_STATUS_PARAM_NULL if parameter is NULL.
@@ -99,7 +99,7 @@ oes_api_router_ecmp_hash_params_set(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_get(
-					               struct oes_router_ecmp_hash_fields * ecmp_hash_params,
+                                   struct oes_router_ecmp_hash_fields * ecmp_hash_params,
                                    void * router_ecmp_hash_vs_ext
                                    );
 
@@ -113,7 +113,7 @@ oes_api_router_ecmp_hash_params_get(
  * @param[in] access_cmd - ADD/EDIT/DELETE.
  * @param[in] router_attr - Router attributes.
  * @param[in,out] vrid - Virtual router ID
- * @param[in,out] router_vs_ext- vendor specific extention 
+ * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
@@ -135,7 +135,7 @@ oes_api_router_set(
  * 
  * @param[out] router_attr - Router attributes.
  * @param[in] vrid - Virtual router ID
- * @param[in,out] router_vs_ext- vendor specific extention 
+ * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
@@ -164,7 +164,7 @@ oes_api_router_get(
  *       mtu ,rpc ... .
  * @param[in,out] rif - Router Interface ID. 
  * @param[in,out] router_interface_vs_ext- vendor specific 
- *       extention
+ *       extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -177,8 +177,8 @@ oes_api_router_interface_set(
                             enum oes_access_cmd access_cmd,
                             unsigned int    vrid,
                             struct oes_l3_interface * ifc,
-					        struct oes_l3_interface_attributes * ifc_attr,
-					        unsigned int * rif,
+                            struct oes_l3_interface_attributes * ifc_attr,
+                            unsigned int * rif,
                             void * router_interface_vs_ext
                             );
 
@@ -190,7 +190,7 @@ oes_api_router_interface_set(
  * @param[out] ifc_attr - Interface attributes 
  * @param[in] rif - Router Interface ID. 
  * @param[in,out] router_interface_vs_ext- vendor specific 
- *       extention
+ *       extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -202,20 +202,20 @@ oes_status_e
 oes_api_router_interface_get(
                             unsigned int   vrid,
                             struct oes_l3_interface * ifc,
-					        struct oes_l3_interface_attributes * ifc_attr,
-					        unsigned int  rif,
+                            struct oes_l3_interface_attributes * ifc_attr,
+                            unsigned int  rif,
                             void * router_interface_vs_ext
                             );
 
 /**
  *  This function sets admin state of a router interface. Admin state is set per
- *  IP verssion.
+ *  IP version.
  *
  * @param[in] vrid - Virtual Router ID.
  * @param[in] rif - Router Interface ID.
  * @param[in] admin_state - Admin state.
  * @param[in,out] router_interface_state_vs_ext- vendor specific
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -225,8 +225,8 @@ oes_api_router_interface_get(
 oes_status_e
 oes_api_router_interface_state_set(
                                   unsigned int   vrid,
-					              unsigned int   rif,
-					              struct oes_l3_interface_admin_state * admin_state,
+                                  unsigned int   rif,
+                                  struct oes_l3_interface_admin_state * admin_state,
                                   void * router_interface_state_vs_ext
                                   );
 
@@ -239,7 +239,7 @@ oes_api_router_interface_state_set(
  * @param[in] rif - Router Interface ID.
  * @param[out] admin_state - Admin state.
  * @param[in,out] router_interface_state_vs_ext- vendor specific
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -249,8 +249,8 @@ oes_api_router_interface_state_set(
 oes_status_e
 oes_api_router_interface_state_set(
                                   unsigned int   vrid,
-					              unsigned int   rif,
-					              struct oes_l3_interface_admin_state * admin_state,
+                                  unsigned int   rif,
+                                  struct oes_l3_interface_admin_state * admin_state,
                                   void * router_interface_state_vs_ext
                                   );
 
@@ -264,7 +264,7 @@ oes_api_router_interface_state_set(
  * @param[in] mac_addr_list - MAC addresses array.
  * @param[in] mac_cnt - MAC addresses array size.
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -274,12 +274,12 @@ oes_status_e
 oes_api_router_interface_mac_set(
                                 enum oes_access_cmd access_cmd,
                                 unsigned int   vrid,
-					            unsigned int   rif,
+                                unsigned int   rif,
                                 struct ether_addr * mac_addr_list,
                                 unsigned short    mac_cnt,
                                 void * router_interface_mac_vs_ext
                                 );
-					    
+
 /**
  *  This function gets MAC address of a router interface.
  * 
@@ -289,7 +289,7 @@ oes_api_router_interface_mac_set(
  * @param[out] mac_addr_list - MAC addresses array .
  * @param[in,out] mac_cnt - MAC addresses array size . 
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
- *       extention 
+ *       extension 
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -299,12 +299,12 @@ oes_status_e
 oes_api_router_interface_mac_get(
                                 enum oes_access_cmd access_cmd,
                                 unsigned int   vrid,
-					            unsigned int   rif,
+                                unsigned int   rif,
                                 struct ether_addr * mac_addr_list,
                                 unsigned short  * mac_cnt,
                                 void * router_interface_mac_vs_ext
                                 );
-					    				    
+
 /**
  *  This function adds/modifies/deletes/delete_all a neighbour
  *  information. The neighbour information associate an IP
@@ -322,7 +322,7 @@ oes_api_router_interface_mac_get(
  * @param[in] neigh_key - neigh IP address. 
  * @param[in] neigh_data- neigh data including rif,mac address , 
  *       action(TRAP/DROP/FORWARD) ,activity
- * @param[in,out] router_neigh_vs_ext- vendor specific extention
+ * @param[in,out] router_neigh_vs_ext- vendor specific extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
@@ -338,22 +338,41 @@ oes_api_router_neigh_set(
                         struct oes_neigh_data * neigh_data,
                         void * router_neigh_vs_ext
                         );
-				    
+
 /**
- *  This function gets/get activity a neighbour information. At
- *  GET operation, MAC address and Router Interface ID will be
- *  returned in case the neighbour exists. At GET_ACTIVITY
- *  operation, MAC address, Router Interface ID and activity
- *  indicator will be returned.
+ *  This function gets/get activity a neighbour information.
+ *  function can receive four types of input: 
+ *     1) get information for specific  neigh
+ *      user should inserts  sepecific neigh as the first
+ *      neigh_key element in the neigh_key array , neigh_cnt
+ *      should be equal to 1, access_cmd should be
+ *      OES_ACCESS_CMD_GET
+ *  
+ *     2) get neigh  activity information for specific neigh
+ *      user should inserts sepecific neigh as the first
+ *      neigh_key element in the neigh_key array , neigh_cnt
+ *      should be equal to 1, access_cmd should be
+ *      OES_ACCESS_CMD_GET_ACTIVITY
+ *  
+ *   - 3) get a list of first n neighs ,user
+ *      should provide an empty  neigh_key array array
+ *      neigh_cnt should be equal to n,access_cmd should be
+ *      OES_ACCESS_CMD_GET_FIRST
+ *
+ *   - 4) get a list of n  neighs  which comes after
+ *      certain neigh(it does not have to exist) user should
+ *      insert the certain neigh as the first neigh_key element
+ *      in the neigh_key array , neigh_cnt should be equal to n,
+ *      OES_ACCESS_CMD_GET_NEXT
  * 
  * @param[in] access_cmd - GET/GET_NEXT/GET_FIRST/GET_ACTIVITY 
  * @param[in] vrid - Virtual Router ID.
  * @param[in,out] neigh_key_list - neigh IP address array 
  * @param[out] neigh_data_list- neigh data  array , each neigh 
- *       data element includs rif,mac address ,
+ *       data element includes rif,mac address ,
  *       action(TRAP/DROP/FORWARD) ,activity
  * @param[in,out] neigh_cnt - array size  
- * @param[in,out] router_neigh_vs_ext- vendor specific extention
+ * @param[in,out] router_neigh_vs_ext- vendor specific extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -364,8 +383,8 @@ oes_api_router_neigh_set(
 oes_status_e 
 oes_api_router_neigh_get(
                         enum oes_access_cmd access_cmd, 
-				        unsigned int   vrid,
-				        struct oes_ip_addr  * neigh_key_list,
+                        unsigned int   vrid,
+                        struct oes_ip_addr  * neigh_key_list,
                         struct oes_neigh_data * neigh_data_list,
                         unsigned short   neigh_cnt,
                         void * router_neigh_vs_ext
@@ -386,9 +405,9 @@ oes_api_router_neigh_get(
  * @param[in] vrid - Virtual Router ID.
  * @param[in] uc_route_key - IP network address+prefix len 
  * @param[in] uc_route_data - routing table data including 
- *       action(tarp,drop,forword),next-hop list
+ *       action(tarp,drop,forward),next-hop list
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -399,24 +418,25 @@ oes_api_router_neigh_get(
 oes_status_e 
 oes_api_router_uc_route_set(
                            enum oes_access_cmd access_cmd, 
-				           unsigned int   vrid,
+                           unsigned int   vrid,
                            struct oes_ip_prefix * uc_route_key,
                            struct oes_uc_route_data * uc_route_data,
                            void * router_uc_route_vs_ext
                            );
 
 /**
- * This function gets unicast route entrys from the SDK The 
+ * This function gets unicast route entires from the SDK The 
  * function can receive three types of input: 
- *     1) get information for specific  unicast route user
- *      should provide  unicast route in the uc_route_key_ feild
- *      ,uc_route_cnt should be equal to 1. access_cmd should be
- *      OES_ACCESS_CMD_GET
+ *     1) get information for specific  unicast route,user
+ *      should insert the certain unicast route as the first
+ *      uc_route_key element in the uc_route_key array ,
+ *      uc_route_cnt should be equal to 1,
+ *      access_cmd should be OES_ACCESS_CMD_GET
  *
  *   - 2) get a list of first n unicast routes ,user
- *      should provide  un empty uc_route_key  array
- *      uc_route_cnt should be equal to n mac_e,access_cmd
- *      should be OES_ACCESS_CMD_GET_FIRST
+ *      should provide an empty uc_route_key  array uc_route_cnt
+ *      should be equal to n,access_cmd should be
+ *      OES_ACCESS_CMD_GET_FIRST
  *
  *   - 3) get a list of n  unicast routes which comes after
  *      certain unicast route (it does not have to exist) user
@@ -430,10 +450,10 @@ oes_api_router_uc_route_set(
  * @param[in,out] uc_route_key_list  - IP network address+prefix
  *       len array
  * @param[out] uc_route_data_list - routing table data 
- *       including action(tarp,drop,forword),next-hop list array
+ *       including action(tarp,drop,forward),next-hop list array
  * @param[in,out] uc_route_cnt - array size 
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -442,7 +462,7 @@ oes_api_router_uc_route_set(
 oes_status_e 
 oes_api_router_uc_route_get(
                            enum oes_access_cmd access_cmd, 
-				           unsigned int   vrid,
+                           unsigned int   vrid,
                            struct oes_ip_prefix * uc_route_key_list,
                            struct oes_uc_route_data * uc_route_data_list,
                            unsigned short uc_route_cnt,
@@ -451,14 +471,14 @@ oes_api_router_uc_route_get(
 
 
 /**
- *  This function allocates/deallocates a router intarface
+ *  This function allocates/deallocates a router interface
  *  counter.
  *
  * @param[in] access_cmd - ADD /DELETE . 
  * @param[in] vrid - Virtual Router ID. 
  * @param[in] rif - Router Interface ID.
  * @param[in,out] router_cntr_alloc_vs_ext- vendor specific 
- *       extention
+ *       extension
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully
  * @return OES_STATUS_PARAM_ERROR f any input parameter is 
@@ -470,7 +490,7 @@ oes_api_router_uc_route_get(
 oes_status_e 
 oes_api_router_interface_cntr_set(
                                  enum oes_access_cmd access_cmd, 
-				                 unsigned int   vrid, 
+                                 unsigned int   vrid, 
                                  unsigned int   rif,
                                  void * router_interface_cntr_vs_ext
                                  );
@@ -480,9 +500,9 @@ oes_api_router_interface_cntr_set(
  * @param[in] access_cmd - READ/READ CLEAR. 
  * @param[in] vrid - Virtual Router ID. 
  * @param[in] rif - Router Interface ID. 
- * @param[out]cntr - Router Intarfece counter extention 
+ * @param[out]cntr - Router Interface counter extension 
  * @param[in,out] router_cntr_alloc_vs_ext- vendor specific 
- *       extention
+ *       extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
  * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid. 
@@ -492,11 +512,11 @@ oes_api_router_interface_cntr_set(
 oes_status_e 
 oes_api_router_interface_cntr_get(
                                  enum oes_access_cmd access_cmd, 
-				                 unsigned int vrid,
+                                 unsigned int vrid,
                                  unsigned int rif,
-					             struct oes_router_cntr * cntr,
+                                 struct oes_router_cntr * cntr,
                                  void * router_interface_cntr_vs_ext
-					             );
+                                 );
 
 
 /**
@@ -507,12 +527,11 @@ oes_api_router_interface_cntr_get(
 *       	   DELETE_ALL command deletes all multicast routes associated
 *       	   with vrid.
 * @param[in] vrid - Virtual Router ID.
-* @param[in] mc_route_key - group ip, sender IP,  ingress rif 
-*       (in oredr to configure *.G rule sender ip should be
-*       0.0.0.0)
+* @param[in] mc_route_key - group ip, sender IP, ingress rif (in
+*       order to configure *.G rule sender IP should be 0.0.0.0)
 * @param[in] mc_route_data -mc route action , egress rif list 
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
-*       extention      
+*       extension      
 *
 * @return OES_STATUS_SUCCESS if operation completes successfully. 
 * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -522,29 +541,47 @@ oes_api_router_interface_cntr_get(
 
 oes_status_e
 oes_api_router_mc_route_set(
-                          enum oes_access_cmd access_cmd,
-                          unsigned int   vrid,
-				          struct oes_mc_route_key * mc_route_key,
-                          struct oes_mc_route_data * mc_route_data,
-                          void * router_mc_route_vs_ext
-                          );
-				       
+                           enum oes_access_cmd access_cmd,
+                           unsigned int   vrid,
+                           struct oes_mc_route_key * mc_route_key,
+                           struct oes_mc_route_data * mc_route_data,
+                           void * router_mc_route_vs_ext
+                           );
+
 
 /**
 *  This function gets a multicast route from the MC routing table.
+*  function can receive three types of input: 
+ *     1) get information for specific multicast route,user
+ *      should insert the certain multicast route as the first
+ *      mc_route_key element in the mc_route_key array ,
+ *      mc_route_cnt should be equal to 1,
+ *      access_cmd should be OES_ACCESS_CMD_GET
+ *
+ *   - 2) get a list of first n multicast routes ,user
+ *      should provide an empty mc_route_key  array mc_route_cnt
+ *      should be equal to n,access_cmd should be
+ *      OES_ACCESS_CMD_GET_FIRST
+ *
+ *   - 3) get a list of n  multicast routes which comes after
+ *      certain multicast route (it does not have to exist) user
+ *      should insert the certain multicast route as the first
+ *      mc_route_key element in the mc_route_key array ,
+ *      mc_route_cnt should be equal to n,
+*       access_cmd should be OES_ACCESS_CMD_GET_NEXT
 *  
 * @param[in] access_cmd - GET/GET_NEXT/GET_FIRST/GET_ACTIVITY 
 * @param[in] vrid - Virtual Router ID. 
 * @param[in] mc_route_key_list  - array of mc_route_key each 
-*       mc_route_key  element includs group ip, sender IP,
-*       ingress rif (in oredr to configure
-*       *.G rule sender ip should be 0.0.0.0)
+*       mc_route_key  element includes group IP, sender IP,
+*       ingress rif (in order to configure
+*       *.G rule sender IP should be 0.0.0.0)
 * @param[out] mc_route_data_list  -array of mc_route_data  each 
-*       mc_route_data element includs mc route action , egress
+*       mc_route_data element includes mc route action , egress
 *       rif list
 * @param[in,out] mc_route_cnt  - array size  
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
-*       extention
+*       extension
 *  
 * @return OES_STATUS_SUCCESS if operation completes successfully.
 * @return OES_STATUS_PARAM_ERORR if any input parameter is 
@@ -555,14 +592,14 @@ oes_api_router_mc_route_set(
 
 oes_status_e
 oes_api_router_mc_route_get(
-                          enum oes_access_cmd access_cmd,
-                          unsigned int   vrid,
-				          struct oes_mc_route_key * mc_route_key_list,
-                          struct oes_mc_route_data * mc_route_data_list,
-                          unsigned short   mc_route_cnt,
-                          void * router_mc_route_vs_ext
-                          );
-				       
+                           enum oes_access_cmd access_cmd,
+                           unsigned int   vrid,
+                           struct oes_mc_route_key * mc_route_key_list,
+                           struct oes_mc_route_data * mc_route_data_list,
+                           unsigned short   mc_route_cnt,
+                           void * router_mc_route_vs_ext
+                           );
+
 
 /**
 *  This function adds/deletes an egress l3 interfaces to/from 
@@ -570,12 +607,12 @@ oes_api_router_mc_route_get(
 *
 * @param[in] access_cmd - ADD/DELETE
 * @param[in] vrid - Virtual Router ID. 
-* @param[in] mc_route_key  -  mc_route_key  element includs group ip, sender IP,
-*       ingress rif (in oredr to configure
+* @param[in] mc_route_key  -  mc_route_key  element includes group IP, sender IP,
+*       ingress rif (in order to configure
 * @param[in] rif_list  -array of egress rif 
 * @param[in,out] rif_cnt  -egress rif array size  
 * @param[in,out] router_mc_egress_rif_vs_ext- vendor specific 
-*       extention
+*       extension
 *  
 * @return OES_STATUS_SUCCESS if operation completes successfully. 
 * @return OES_STATUS_PARAM_ERROR if any input parameter is invalid.
@@ -586,19 +623,18 @@ oes_status_e
 oes_api_router_mc_egress_rif_set(
                                 enum oes_access_cmd access_cmd,
                                 unsigned int  vrid,
-				                struct oes_mc_route_key * mc_route_key,
+                                struct oes_mc_route_key * mc_route_key,
                                 unsigned int * rif_list,
                                 unsigned short rif_cnt,
                                 void * router_mc_egress_rif_vs_ext
                                 );
-					  
+
 
 /**
 *  This function get a list of  egress l3 interfaces from
-*  multicast route. When egress_rif_num is 0 , will return a
-*  counter of the number of egress rifs, and egress_rif_arr will
-*  remain empty. When egress_rif_arr = NULL, will return counter
-*  in egress_rif_num.
+*  multicast route. When egress_rif_num is 0 , the API will
+*  return a counter of the number of egress rifs , and rif_list
+*  will remain empty.
 *  
 * @param[in] vrid - Virtual Router ID. 
 * @param[in] mc_route_key  -  mc_route_key  element includs group ip, sender IP,
@@ -606,7 +642,7 @@ oes_api_router_mc_egress_rif_set(
 * @param[out] rif_list  -array of egress rif 
 * @param[in,out] rif_cnt  -egress rif array size  
 * @param[in,out] router_mc_egress_rif_vs_ext- vendor specific 
-*       extention
+*       extension
 *  
 *
 * @return OES_STATUS_SUCCESS if operation completes successfully.
@@ -620,11 +656,11 @@ oes_api_router_mc_egress_rif_set(
 oes_status_e 
 oes_api_router_mc_egress_rif_get(
                                 unsigned int  vrid,
-				                struct oes_mc_route_key * mc_route_key,
+                                struct oes_mc_route_key * mc_route_key,
                                 unsigned int * rif_list,
                                 unsigned short * rif_cnt,
                                 void * router_mc_egress_rif_vs_ext
                                 );
-					 
+
 
 #endif /* __OES_API_ROUTER_H__ */
