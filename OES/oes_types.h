@@ -306,14 +306,13 @@ struct oes_ip_addr {
 };
 
 struct oes_neigh_data  {
-    unsigned int * rif;
+    unsigned int rif;
     struct ether_addr * mac_addr; 
-    enum oes_router_action * action;
-	unsigned char * activity;
+    enum oes_router_action  action;
+	unsigned char activity;
 };
  
 struct oes_ip_prefix {
-	enum oes_ip_version version;
 	struct oes_ip_addr;
 	unsigned int prefix_len;
 };
@@ -322,6 +321,7 @@ struct oes_uc_route_data {
     enum oes_router_action  action;
     struct oes_ip_addr * next_hop_list;
     unsigned short   next_hop_cnt;
+	unsigned char activity;
 };
 
 struct oes_router_cntr {
@@ -352,8 +352,8 @@ struct oes_mc_route_data {
 struct oes_mc_router_action {
 	unsigned char  enable_assert;
 	unsigned char  enable_rpf;
-	enum oes_router_action  action; 
-	unsigned char  dec_ttl;					
+	unsigned char  dec_ttl;	
+	enum oes_router_action  action; 			
 };
 
 struct oes_event_info{

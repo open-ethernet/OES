@@ -58,16 +58,17 @@ oes_api_router_log_verbosity_level_set(
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
-oes_api_port_log_verbosity_level_get(
-                                    int   * verbosity_level
-                                    );
+oes_api_router_log_verbosity_level_get(
+                                      int   * verbosity_level
+                                      );
 
 
 
 /**
  * This function sets the ECMP hash function configuration 
  * parameters. 
- *
+ *  
+ * @param[in,out] vrid - Virtual router ID 
  * @param[in] oes_router_ecmp_hash_fields - ECMP hash 
  *       configuration.
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
@@ -79,6 +80,7 @@ oes_api_port_log_verbosity_level_get(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_set(
+                                   unsigned int   vrid,
                                    struct oes_router_ecmp_hash_fields * ecmp_hash_params,
                                    void * router_ecmp_hash_vs_ext
                                    );
@@ -87,7 +89,8 @@ oes_api_router_ecmp_hash_params_set(
 /**
  * This function gets the ECMP hash function configuration 
  * parameters. 
- *
+ *  
+ * @param[in,out] vrid - Virtual router ID 
  * @param[out] oes_router_ecmp_hash_fields - ECMP hash 
  *       configuration.
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
@@ -99,6 +102,7 @@ oes_api_router_ecmp_hash_params_set(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_get(
+                                   unsigned int   vrid,
                                    struct oes_router_ecmp_hash_fields * ecmp_hash_params,
                                    void * router_ecmp_hash_vs_ext
                                    );
@@ -110,9 +114,9 @@ oes_api_router_ecmp_hash_params_get(
  *  interfaces and routes associated with a router must be
  *  deleted before the router can be deleted as well.
  *  
- * @param[in] access_cmd - ADD/EDIT/DELETE.
- * @param[in] router_attr - Router attributes.
- * @param[in,out] vrid - Virtual router ID
+ * @param[in] access_cmd - ADD/EDIT/DELETE. 
+ * @param[in,out] vrid - Virtual router ID 
+ * @param[in] router_attr - Router attributes. 
  * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -124,17 +128,17 @@ oes_api_router_ecmp_hash_params_get(
 oes_status_e
 oes_api_router_set(
                   enum oes_access_cmd access_cmd,
-                  struct sx_router_attributes * router_attr,
                   unsigned int  * vrid,
+                  struct oes_router_attributes * router_attr,
                   void * router_vs_ext
                   );
 
 
 /**
  *  This function gets a virtual router information.
- * 
- * @param[out] router_attr - Router attributes.
+ *  
  * @param[in] vrid - Virtual router ID
+ * @param[out] router_attr - Router attributes. 
  * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -145,8 +149,8 @@ oes_api_router_set(
  */
 oes_status_e
 oes_api_router_get(
-                  struct sx_router_attributes * router_attr,
                   unsigned int   vrid,
+                  struct oes_router_attributes * router_attr,
                   void * router_vs_ext
                   );
 
@@ -157,12 +161,12 @@ oes_api_router_get(
  *  interface.
  * 
  * @param[in] access_cmd - ADD/EDIT/DELETE/DELETE ALL.
- * @param[in] vrid - Virtual Router ID.
+ * @param[in] vrid - Virtual Router ID. 
+ * @param[in,out] rif - Router Interface ID.  
  * @param[in] ifc - Interface type and parameters e.g. 
  *       vlan,port ... 
  * @param[in] ifc_attr - Interface attributes e.g mac address 
  *       mtu ,rpc ... .
- * @param[in,out] rif - Router Interface ID. 
  * @param[in,out] router_interface_vs_ext- vendor specific 
  *       extension
  *
@@ -176,19 +180,19 @@ oes_status_e
 oes_api_router_interface_set(
                             enum oes_access_cmd access_cmd,
                             unsigned int    vrid,
+                            unsigned int * rif,
                             struct oes_l3_interface * ifc,
                             struct oes_l3_interface_attributes * ifc_attr,
-                            unsigned int * rif,
                             void * router_interface_vs_ext
                             );
 
 /**
  * This function gets a router interface information. 
  * 
- * @param[in] vrid - Virtual Router ID.
+ * @param[in] vrid - Virtual Router ID. 
+ * @param[in] rif - Router Interface ID.  
  * @param[out] ifc - Interface type and parameters
  * @param[out] ifc_attr - Interface attributes 
- * @param[in] rif - Router Interface ID. 
  * @param[in,out] router_interface_vs_ext- vendor specific 
  *       extension
  *
@@ -201,9 +205,9 @@ oes_api_router_interface_set(
 oes_status_e
 oes_api_router_interface_get(
                             unsigned int   vrid,
+                            unsigned int  rif,
                             struct oes_l3_interface * ifc,
                             struct oes_l3_interface_attributes * ifc_attr,
-                            unsigned int  rif,
                             void * router_interface_vs_ext
                             );
 
@@ -488,12 +492,12 @@ oes_api_router_uc_route_get(
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
-oes_api_router_interface_cntr_set(
-                                 enum oes_access_cmd access_cmd, 
-                                 unsigned int   vrid, 
-                                 unsigned int   rif,
-                                 void * router_interface_cntr_vs_ext
-                                 );
+oes_api_router_interface_cntr_enable_set(
+                                        enum oes_access_cmd access_cmd, 
+                                        unsigned int   vrid, 
+                                        unsigned int   rif,
+                                        void * router_interface_cntr_vs_ext
+                                        );
 /**
  * This function reads router interface counter 
  *
@@ -595,7 +599,7 @@ oes_api_router_mc_route_get(
                            enum oes_access_cmd access_cmd,
                            unsigned int   vrid,
                            struct oes_mc_route_key * mc_route_key_list,
-                           struct oes_mc_route_data * mc_route_data_list,
+                           struct oes_mc_rout e_data * mc_route_data_list,
                            unsigned short   mc_route_cnt,
                            void * router_mc_route_vs_ext
                            );
