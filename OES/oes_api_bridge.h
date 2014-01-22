@@ -27,8 +27,8 @@
 */
 
  
-#ifndef __oes_API_BRIDGE_H__
-#define __oes_API_BRIDGW_H__
+#ifndef __OES_API_BRIDGE_H__
+#define __OES_API_BRIDGW_H__
 
 #include <oes_types>
 
@@ -140,4 +140,4 @@ oes_api_bridge_port_get(
     
 
 
-#endif /* __oes_API_BRIDGE_H__ */                                   
+#endif /* __OES_API_BRIDGE_H__ */                                   
