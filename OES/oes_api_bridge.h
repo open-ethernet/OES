@@ -27,8 +27,8 @@
 */
 
  
-#ifndef __oes_API_BRIDGE_H__
-#define __oes_API_BRIDGW_H__
+#ifndef __OES_API_BRIDGE_H__
+#define __OES_API_BRIDGW_H__
 
 #include <oes_types>
 
@@ -45,7 +45,7 @@
  */
 oes_status_e
 oes_api_bridge_log_verbosity_level_set(
-                                      int   verbosity_level
+                                      const int   verbosity_level
                                       );
 
 /**
@@ -65,7 +65,7 @@ oes_api_bridge_log_verbosity_level_get(
 /**
  * This function Adds/Deletes bridge.
  * @param[in] cmd - CREATE/DELETE. 
- * @param[in,out] br_id- bridge id  
+ * @param[in,out] br_id_p- bridge id  
  * @param[in,out] bridge_vs_ext- vendor specific extention 
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
@@ -74,8 +74,8 @@ oes_api_bridge_log_verbosity_level_get(
  */
 oes_status_e
 oes_api_bridge_set(
-		          enum oes_access_cmd cmd,
-                  int * br_id,
+		          const enum oes_access_cmd cmd,
+                  int * br_id_p,
                   void * bridge_vs_ext 
                   );
 
@@ -92,14 +92,15 @@ oes_api_bridge_set(
 
 oes_status_e
 oes_api_bridge_get(  
-                  int br_id_list[],
-                  unsigned short   br_cnt,
+                  int * br_id_list,
+                  unsigned short  * br_cnt_p,
                   void * bridge_vs_ext 
 		          );
 
 /**
  * This function adds ports to a bridge 
  *  
+ * @param[in] access_cmd - ADD/DELETE  
  * @param[in] br_id - bridge id 
  * @param[in] log_port_list - List of ports.
  * @param[in] port_cnt- port list size 
@@ -111,10 +112,10 @@ oes_api_bridge_get(
  */
 oes_status_e
 oes_api_bridge_port_set(
-                       int br_id,
-                       enum oes_access_cmd cmd,
-                       unsigned long log_port_list[],
-		               unsigned short  port_cnt,
+                       const enum oes_access_cmd cmd,
+                       const int br_id,
+                       const unsigned long   log_port_list_p,
+		               const unsigned short  port_cnt,
                        void * bridge_port_vs_ext
                        );
 
@@ -123,7 +124,7 @@ oes_api_bridge_port_set(
  *
  * @param[in] br_id bridge id 
  * @param[i/out] log_port_list - List of ports.
- * @param[in,out] port_cnt- port list size 
+ * @param[in,out] port_cnt_p- port list size 
  * @param[in,out] bridge_port_vs_ext- vendor specific extention
  * 
  * @return OES_STATUS_SUCCESS if operation completes successfully
@@ -132,12 +133,12 @@ oes_api_bridge_port_set(
  */
 oes_status_e
 oes_api_bridge_port_get(
-                       int br_id,
-                       unsigned long log_port_list[],
+                       const int br_id,
+                       unsigned long * log_port_list_p,
 		               unsigned short  port_cnt,
                        void * bridge_port_vs_ext
                        );
     
 
 
-#endif /* __oes_API_BRIDGE_H__ */                                   
+#endif /* __OES_API_BRIDGE_H__ */                                   

@@ -26,8 +26,8 @@
 * SOFTWARE. 
 */
 
-#ifndef __EOS_API_SPAN_H__
-#define __EOS_API_SPAN_H__
+#ifndef __OES_API_SPAN_H__
+#define __OES_API_SPAN_H__
 
 #include <oes_types.h>
 
@@ -46,7 +46,7 @@
  */
 oes_status_e
 oes_api_span_verbosity_level_set(
-                                int   verbosity_level
+                                const int   verbosity_level
                                 );
 
 /**
@@ -65,26 +65,27 @@ oes_api_span_log_verbosity_level_get(
 
 /**
  *  This function sets the SPAN session.
- *
- * @param[in] br_id - Bridge id  
+ * 
  * @param[in] access_cmd - CREATE / EDIT / DESTROY 
- * @param[in] span_session_params - SPAN session params 
- * @param[in,out] span_session_id - SPAN session ID  
+ * @param[in] br_id - Bridge id   
+ * @param[in] span_session_params_p - SPAN session params 
+ * @param[in,out] span_session_id_p - SPAN session ID  
  * @param[in,out] span_session_vs_ext - vendor specific 
  *       extention
+ *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
- * @return EOS_STATUS_NO_RESOURCES if pool cannot provide object 
+ * @return OES_STATUS_NO_RESOURCES if pool cannot provide object 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e 
 oes_api_span_session_set(
-                        int br_id,
-                        enum oes_access_cmd access_cmd,
-                        struct oes_span_session_params 	* span_session_params,
-                        unsigned char  * span_session_id,
+                        const enum oes_access_cmd access_cmd,
+                        const int br_id,
+                        const struct oes_span_session_params    * span_session_params_p,
+                        unsigned char  * span_session_id_p,
                         void *  span_session_vs_ext
-	                    );
+                        );
 
 
 /**
@@ -96,18 +97,19 @@ oes_api_span_session_set(
  * @param[in] span_session_id - SPAN session ID  
  * @param[in,out] span_session_vs_ext - vendor specific 
  *       extention
+ *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
- * @return EOS_STATUS_NO_RESOURCES if pool cannot provide object 
+ * @return OES_STATUS_NO_RESOURCES if pool cannot provide object 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_span_session_get(
-                        int br_id,
-                        struct oes_span_session_params	* span_session_params,
-                        unsigned char  	span_session_id,
+                        const int br_id,
+                        struct oes_span_session_params  * span_session_params_p,
+                        const unsigned char     span_session_id,
                         void *  span_session_vs_ext
-	                    );
+                        );
 
 
 /**
@@ -116,9 +118,9 @@ oes_api_span_session_get(
  * @param[in] br_id - Bridge id 
  * @param[in] access_cmd - ADD / DELETE 
  * @param[in] log_port -  port to mirror
- * @param[in] mirror_direction - egrees or ingress mirrorin 
+ * @param[in] mirror_direction_p - egrees or ingress mirrorin 
  * @param[in] span_session_id - SPAN session ID 
- * @param[in,out] span_mirror_vs_ext - vendor specific 
+ * @param[in,out] span_mirror_vs_ext - vendor specific extention
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level 
@@ -126,13 +128,13 @@ oes_api_span_session_get(
  */
 oes_status_e 
 oes_api_span_mirror_set(
-                       int br_id,
-	                   enum oes_access_cmd access_cmd,
-                       unsigned long log_port,
-	                   enum oes_mirror_direction * mirror_direction,
-	                   unsigned char span_session_id,
+                       const enum oes_access_cmd access_cmd,
+                       const int br_id,
+                       const  long log_port,
+                       const enum oes_mirror_direction * mirror_direction_p,
+                       const unsigned char span_session_id,
                        void *  span_mirror_vs_ext
-	                   );
+                       );
 
 
 /**
@@ -141,9 +143,9 @@ oes_api_span_mirror_set(
  *  
  * @param[in] br_id - Bridge id 
  * @param[in] log_port -  port to mirror
- * @param[out] mirror_direction - egrees or ingress mirroring 
+ * @param[out] mirror_direction_p - egrees or ingress mirroring 
  * @param[in] span_session_id - SPAN session ID  
- * @param[in,out] span_mirror_vs_ext - vendor specific 
+ * @param[in,out] span_mirror_vs_ext - vendor specific extention 
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level 
@@ -151,12 +153,12 @@ oes_api_span_mirror_set(
  */
 oes_status_e 
 oes_api_span_mirror_get(
-                       int br_id,
-                       unsigned long log_port,
-	                   enum oes_mirror_direction * mirror_direction,
-	                   unsigned char * span_session_id,
+                       const int br_id,
+                       const unsigned long log_port,
+                       enum oes_mirror_direction * mirror_direction_p,
+                       const unsigned char  span_session_id,
                        void *  span_mirror_vs_ext
-	                   );
+                       );
 
 
 
@@ -164,47 +166,49 @@ oes_api_span_mirror_get(
 /**
  *  This function sets the SPAN analyzer port.
  *  
- * @param[in] br_id - Bridge id 
  * @param[in] access_cmd - ADD / DELETE 
+ * @param[in] br_id - Bridge id 
  * @param[in] log_port - analyzer port which added to SPAN
  * @param[in] span_session_id - SPAN session ID 
  * @param[in,out] span_analyzer_vs_ext -vendor specific 
- * extention @@return OES_STATUS_SUCCESS - Operation completes 
- * successfully 
+ * extention 
+ *  
+ * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_span_analyzer_set(
-	                     int br_id,
-	                     enum oes_access_cmd cmd,
-                         unsigned long log_port,
-                         unsigned char	span_session_id,
+                         const enum oes_access_cmd access_cmd,
+                         const int br_id,
+                         const  unsigned long log_port,
+                         const  unsigned char  span_session_id,
                          void *  span_analyzer_vs_ext
                          );
 
 
 /**
- *  This function geets the SPAN analyzer port.
+ *  This function gets the SPAN analyzer port.
  *  
  * @param[in] br_id - Bridge id 
- * @param[out] log_port - analyzer port which added to SPAN
+ * @param[out] log_port_p - analyzer port which added to SPAN
  * @param[in] span_session_id - SPAN session ID 
  * @param[in,out] span_analyzer_vs_ext -vendor specific 
- * extention @@return OES_STATUS_SUCCESS - Operation completes 
+ * extention 
+ * @return OES_STATUS_SUCCESS - Operation completes 
  * successfully 
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e 
 oes_api_span_analyzer_get(
-	                     int br_id
-                         unsigned long  *	log_port_p,
-                         unsigned char	span_session_id,
+                         const int br_id,
+                         unsigned long  *   log_port_p,
+                         const unsigned char  span_session_id,
                          void *  span_analyzer_vs_ext
                          );
 
 
 
-#endif /* __EOS_API_PORT_MIRROR_H__ */
+#endif /* __OES_API_PORT_MIRROR_H__ */
 

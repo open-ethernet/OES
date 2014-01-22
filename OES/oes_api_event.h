@@ -25,9 +25,9 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE. 
 */
- 
-#ifndef __EOS_API_EVENT_H__
-#define __EOS_API_EVENT_H__
+
+#ifndef __OES_API_EVENT_H__
+#define __OES_API_EVENT_H__
 
 #include <oes_types.h>
 
@@ -46,7 +46,7 @@
  */
 oes_status_e
 oes_api_event_log_verbosity_level_set(
-                                     int   verbosity_level
+                                     const int   verbosity_level
                                      );
 
 /**
@@ -68,7 +68,7 @@ oes_api_event_log_verbosity_level_get(
 * used for receiving a event 
 *  
 * @param[in] access_cmd - CREATE/DESTROY
-* @param[out] fd            - file descriptor 
+* @param[out] fd_p - file descriptor 
 * @param[in,out] event_fd_vs_ext - vendor specific 
  *       extention 
 *
@@ -79,8 +79,8 @@ oes_api_event_log_verbosity_level_get(
 
 oes_status_e
 oes_api_event_fd_set(
-                    enum oes_access_cmd access_cmd,
-		            int * fd,
+                    const enum oes_access_cmd access_cmd,
+                    int * fd_p,
                     void * event_fd_vs_ext
                     );
 
@@ -102,10 +102,10 @@ oes_api_event_fd_set(
 */
 oes_status_e
 oes_api_event_register_set(
-                          enum oes_access_cmd access_cmd,
-				          int  br_id,
-				          enum oes_event event_id,
-				          int  fd,
+                          const enum oes_access_cmd access_cmd,
+                          const int  br_id,
+                          const enum oes_event event_id,
+                          const int  fd,
                           void * event_register_vs_ext
                           );
 
@@ -114,7 +114,7 @@ oes_api_event_register_set(
 * This API enables the user to receive   Events. 
 *
 *@param[in] fd - File descriptor to listen on.
-*@param[out]oes_event_info  - event information 
+*@param[out]oes_event_info_p  - event information 
 *@param[in,out] event_rcv_vs_ext - vendor specific
 *       extention
 *@return OES_STATUS_SUCCESS if operation completes successfully 
@@ -125,8 +125,8 @@ oes_api_event_register_set(
 
 oes_status_e
 oes_api_event_recv(
-                  int  fd,			
-			      struct oes_event_info	* event_info,
+                  const int  fd,            
+                  struct oes_event_info * event_info_p,
                   void * event_recv_vs_ext
                   );
 

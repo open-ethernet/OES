@@ -26,8 +26,8 @@
 * SOFTWARE. 
 */
 
-#ifndef __EOS_API_ROUTER_H__
-#define __EOS_API_ROUTER_H__
+#ifndef __OES_API_ROUTER_H__
+#define __OES_API_ROUTER_H__
 
 #include <oes_types.h>
 
@@ -45,13 +45,13 @@
  */
 oes_status_e
 oes_api_router_log_verbosity_level_set(
-                                      int   verbosity_level
+                                      const int   verbosity_level
                                       );
 
 /**
  * This function gets the log verbosity level of the router 
  * MODULE 
- * @param[out]  verbosity_level router  module verbosity level
+ * @param[out]  verbosity_level_p router  module verbosity level
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
@@ -59,7 +59,7 @@ oes_api_router_log_verbosity_level_set(
  */
 oes_status_e
 oes_api_router_log_verbosity_level_get(
-                                      int   * verbosity_level
+                                      int   * verbosity_level_p
                                       );
 
 
@@ -69,8 +69,7 @@ oes_api_router_log_verbosity_level_get(
  * parameters. 
  *  
  * @param[in,out] vrid - Virtual router ID 
- * @param[in] oes_router_ecmp_hash_fields - ECMP hash 
- *       configuration.
+ * @param[in] ecmp_hash_params_p - ECMP hash configuration. 
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
  *       extension
  *
@@ -80,8 +79,8 @@ oes_api_router_log_verbosity_level_get(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_set(
-                                   unsigned int   vrid,
-                                   struct oes_router_ecmp_hash_fields * ecmp_hash_params,
+                                   const unsigned int   vrid,
+                                   const struct oes_router_ecmp_hash_fields * ecmp_hash_params_p,
                                    void * router_ecmp_hash_vs_ext
                                    );
 
@@ -91,8 +90,7 @@ oes_api_router_ecmp_hash_params_set(
  * parameters. 
  *  
  * @param[in,out] vrid - Virtual router ID 
- * @param[out] oes_router_ecmp_hash_fields - ECMP hash 
- *       configuration.
+ * @param[out] ecmp_hash_params_p - ECMP hash configuration. 
  * @param[in,out] router_ecmp_hash_vs_ext- vendor specific 
  *       extension
  *
@@ -102,8 +100,8 @@ oes_api_router_ecmp_hash_params_set(
  */
 oes_status_e
 oes_api_router_ecmp_hash_params_get(
-                                   unsigned int   vrid,
-                                   struct oes_router_ecmp_hash_fields * ecmp_hash_params,
+                                   const unsigned int   vrid,
+                                   struct oes_router_ecmp_hash_fields * ecmp_hash_params_p,
                                    void * router_ecmp_hash_vs_ext
                                    );
 
@@ -115,8 +113,8 @@ oes_api_router_ecmp_hash_params_get(
  *  deleted before the router can be deleted as well.
  *  
  * @param[in] access_cmd - ADD/EDIT/DELETE. 
- * @param[in,out] vrid - Virtual router ID 
- * @param[in] router_attr - Router attributes. 
+ * @param[in,out] vrid_p - Virtual router ID 
+ * @param[in] router_attr_p - Router attributes. 
  * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -127,9 +125,9 @@ oes_api_router_ecmp_hash_params_get(
  */
 oes_status_e
 oes_api_router_set(
-                  enum oes_access_cmd access_cmd,
-                  unsigned int  * vrid,
-                  struct oes_router_attributes * router_attr,
+                  const enum oes_access_cmd access_cmd,
+                  unsigned int  * vrid_p,
+                  const struct oes_router_attributes * router_attr_p,
                   void * router_vs_ext
                   );
 
@@ -138,7 +136,7 @@ oes_api_router_set(
  *  This function gets a virtual router information.
  *  
  * @param[in] vrid - Virtual router ID
- * @param[out] router_attr - Router attributes. 
+ * @param[out] router_attr_p - Router attributes. 
  * @param[in,out] router_vs_ext- vendor specific extension 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -149,8 +147,8 @@ oes_api_router_set(
  */
 oes_status_e
 oes_api_router_get(
-                  unsigned int   vrid,
-                  struct oes_router_attributes * router_attr,
+                  const unsigned int   vrid,
+                  struct oes_router_attributes * router_attr_p,
                   void * router_vs_ext
                   );
 
@@ -162,10 +160,10 @@ oes_api_router_get(
  * 
  * @param[in] access_cmd - ADD/EDIT/DELETE/DELETE ALL.
  * @param[in] vrid - Virtual Router ID. 
- * @param[in,out] rif - Router Interface ID.  
- * @param[in] ifc - Interface type and parameters e.g. 
+ * @param[in,out] rif_p - Router Interface ID.  
+ * @param[in] ifc_p - Interface type and parameters e.g. 
  *       vlan,port ... 
- * @param[in] ifc_attr - Interface attributes e.g mac address 
+ * @param[in] ifc_attr_p - Interface attributes e.g mac address 
  *       mtu ,rpc ... .
  * @param[in,out] router_interface_vs_ext- vendor specific 
  *       extension
@@ -178,11 +176,11 @@ oes_api_router_get(
  */
 oes_status_e
 oes_api_router_interface_set(
-                            enum oes_access_cmd access_cmd,
-                            unsigned int    vrid,
-                            unsigned int * rif,
-                            struct oes_l3_interface * ifc,
-                            struct oes_l3_interface_attributes * ifc_attr,
+                            const enum oes_access_cmd access_cmd,
+                            const unsigned int    vrid,
+                            unsigned int * rif_p,
+                            const struct oes_l3_interface * ifc_p,
+                            const struct oes_l3_interface_attributes * ifc_attr_p,
                             void * router_interface_vs_ext
                             );
 
@@ -204,10 +202,10 @@ oes_api_router_interface_set(
 
 oes_status_e
 oes_api_router_interface_get(
-                            unsigned int   vrid,
-                            unsigned int  rif,
-                            struct oes_l3_interface * ifc,
-                            struct oes_l3_interface_attributes * ifc_attr,
+                            const unsigned int   vrid,
+                            const unsigned int  rif,
+                            struct oes_l3_interface * ifc_p,
+                            struct oes_l3_interface_attributes * ifc_attr_p,
                             void * router_interface_vs_ext
                             );
 
@@ -217,7 +215,7 @@ oes_api_router_interface_get(
  *
  * @param[in] vrid - Virtual Router ID.
  * @param[in] rif - Router Interface ID.
- * @param[in] admin_state - Admin state.
+ * @param[in] admin_state_p - Admin state.
  * @param[in,out] router_interface_state_vs_ext- vendor specific
  *       extension
  *  
@@ -228,9 +226,9 @@ oes_api_router_interface_get(
  */
 oes_status_e
 oes_api_router_interface_state_set(
-                                  unsigned int   vrid,
-                                  unsigned int   rif,
-                                  struct oes_l3_interface_admin_state * admin_state,
+                                  const unsigned int   vrid,
+                                  const unsigned int   rif,
+                                  const struct oes_l3_interface_admin_state * admin_state_p,
                                   void * router_interface_state_vs_ext
                                   );
 
@@ -241,7 +239,7 @@ oes_api_router_interface_state_set(
  *
  * @param[in] vrid - Virtual Router ID.
  * @param[in] rif - Router Interface ID.
- * @param[out] admin_state - Admin state.
+ * @param[out] admin_state_p - Admin state.
  * @param[in,out] router_interface_state_vs_ext- vendor specific
  *       extension
  *  
@@ -252,9 +250,9 @@ oes_api_router_interface_state_set(
  */
 oes_status_e
 oes_api_router_interface_state_set(
-                                  unsigned int   vrid,
-                                  unsigned int   rif,
-                                  struct oes_l3_interface_admin_state * admin_state,
+                                  const unsigned int   vrid,
+                                  const unsigned int   rif,
+                                  struct oes_l3_interface_admin_state * admin_state_p,
                                   void * router_interface_state_vs_ext
                                   );
 
@@ -265,7 +263,7 @@ oes_api_router_interface_state_set(
  * @param[in] access_cmd - ADD/DELETE/DELETE_ALL. 
  * @param[in] vrid - Virtual Router ID. 
  * @param[in] rif - Router Interface ID.
- * @param[in] mac_addr_list - MAC addresses array.
+ * @param[in] mac_addr_list_p - MAC addresses array.
  * @param[in] mac_cnt - MAC addresses array size.
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
  *       extension
@@ -276,11 +274,11 @@ oes_api_router_interface_state_set(
  */
 oes_status_e
 oes_api_router_interface_mac_set(
-                                enum oes_access_cmd access_cmd,
-                                unsigned int   vrid,
-                                unsigned int   rif,
-                                struct ether_addr * mac_addr_list,
-                                unsigned short    mac_cnt,
+                                const enum oes_access_cmd access_cmd,
+                                const unsigned int   vrid,
+                                const unsigned int   rif,
+                                const struct ether_addr * mac_addr_list_p,
+                                const unsigned short    mac_cnt,
                                 void * router_interface_mac_vs_ext
                                 );
 
@@ -290,8 +288,8 @@ oes_api_router_interface_mac_set(
  * @param[in] access_cmd - ADD/DELETE/DELETE_ALL. 
  * @param[in] vrid - Virtual Router ID. 
  * @param[in] rif - Router Interface ID.
- * @param[out] mac_addr_list - MAC addresses array .
- * @param[in,out] mac_cnt - MAC addresses array size . 
+ * @param[out] mac_addr_list_p - MAC addresses array .
+ * @param[in,out] mac_cnt_p - MAC addresses array size . 
  * @param[in,out] router_interface_mac_vs_ext- vendor specific
  *       extension 
  *
@@ -301,11 +299,11 @@ oes_api_router_interface_mac_set(
  */
 oes_status_e
 oes_api_router_interface_mac_get(
-                                enum oes_access_cmd access_cmd,
-                                unsigned int   vrid,
-                                unsigned int   rif,
-                                struct ether_addr * mac_addr_list,
-                                unsigned short  * mac_cnt,
+                                const enum oes_access_cmd access_cmd,
+                                const unsigned int   vrid,
+                                const unsigned int   rif,
+                                struct ether_addr * mac_addr_list_p,
+                                unsigned short  * mac_cnt_p,
                                 void * router_interface_mac_vs_ext
                                 );
 
@@ -323,9 +321,9 @@ oes_api_router_interface_mac_get(
  * 
  * @param[in] access_cmd - ADD/EDIT/DELETE/DELETE_ALL.
  * @param[in] vrid - Virtual Router ID. 
- * @param[in] neigh_key - neigh IP address. 
- * @param[in] neigh_data- neigh data including rif,mac address , 
- *       action(TRAP/DROP/FORWARD) ,activity
+ * @param[in] neigh_key_p - neigh IP address. 
+ * @param[in] neigh_data_p- neigh data including rif,mac address
+ *       , action(TRAP/DROP/FORWARD) ,activity
  * @param[in,out] router_neigh_vs_ext- vendor specific extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -336,10 +334,10 @@ oes_api_router_interface_mac_get(
 
 oes_status_e 
 oes_api_router_neigh_set(
-                        enum oes_access_cmd access_cmd,
-                        unsigned int   vrid,
-                        struct oes_ip_addr  * neigh_key,
-                        struct oes_neigh_data * neigh_data,
+                        const enum oes_access_cmd access_cmd,
+                        const unsigned int   vrid,
+                        const struct oes_ip_addr  * neigh_key_p,
+                        const struct oes_neigh_data * neigh_data_p,
                         void * router_neigh_vs_ext
                         );
 
@@ -371,11 +369,11 @@ oes_api_router_neigh_set(
  * 
  * @param[in] access_cmd - GET/GET_NEXT/GET_FIRST/GET_ACTIVITY 
  * @param[in] vrid - Virtual Router ID.
- * @param[in,out] neigh_key_list - neigh IP address array 
- * @param[out] neigh_data_list- neigh data  array , each neigh 
+ * @param[in,out] neigh_key_list_p - neigh IP address array 
+ * @param[out] neigh_data_list_p- neigh data  array , each neigh
  *       data element includes rif,mac address ,
  *       action(TRAP/DROP/FORWARD) ,activity
- * @param[in,out] neigh_cnt - array size  
+ * @param[in,out] neigh_cnt_p - array size  
  * @param[in,out] router_neigh_vs_ext- vendor specific extension
  *
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
@@ -386,11 +384,11 @@ oes_api_router_neigh_set(
 
 oes_status_e 
 oes_api_router_neigh_get(
-                        enum oes_access_cmd access_cmd, 
-                        unsigned int   vrid,
-                        struct oes_ip_addr  * neigh_key_list,
-                        struct oes_neigh_data * neigh_data_list,
-                        unsigned short   neigh_cnt,
+                        const enum oes_access_cmd access_cmd, 
+                        const unsigned int   vrid,
+                        struct oes_ip_addr  * neigh_key_list_p,
+                        struct oes_neigh_data * neigh_data_list_p,
+                        unsigned short  * neigh_cnt_p,
                         void * router_neigh_vs_ext
                         );
 
@@ -407,8 +405,8 @@ oes_api_router_neigh_get(
  *  
  * @param[in] access_cmd - ADD/DELETE/DELETE ALL .
  * @param[in] vrid - Virtual Router ID.
- * @param[in] uc_route_key - IP network address+prefix len 
- * @param[in] uc_route_data - routing table data including 
+ * @param[in] uc_route_key_p - IP network address+prefix len 
+ * @param[in] uc_route_data_p - routing table data including 
  *       action(tarp,drop,forward),next-hop list
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
  *       extension
@@ -421,10 +419,10 @@ oes_api_router_neigh_get(
 
 oes_status_e 
 oes_api_router_uc_route_set(
-                           enum oes_access_cmd access_cmd, 
-                           unsigned int   vrid,
-                           struct oes_ip_prefix * uc_route_key,
-                           struct oes_uc_route_data * uc_route_data,
+                           const enum oes_access_cmd access_cmd, 
+                           const unsigned int   vrid,
+                           const struct oes_ip_prefix * uc_route_key_p,
+                           const struct oes_uc_route_data * uc_route_data_p,
                            void * router_uc_route_vs_ext
                            );
 
@@ -451,11 +449,11 @@ oes_api_router_uc_route_set(
  *  
  * @param[in] access_cmd - GET/GET NEXT/GET FIRST.
  * @param[in] vrid - Virtual Router ID.
- * @param[in,out] uc_route_key_list  - IP network address+prefix
- *       len array
- * @param[out] uc_route_data_list - routing table data 
+ * @param[in,out] uc_route_key_list_p  - IP network 
+ *       address+prefix len array
+ * @param[out] uc_route_data_list_p - routing table data 
  *       including action(tarp,drop,forward),next-hop list array
- * @param[in,out] uc_route_cnt - array size 
+ * @param[in,out] uc_route_cnt_p - array size 
  * @param[in,out] router_uc_route_vs_ext- vendor specific 
  *       extension
  *  
@@ -465,11 +463,11 @@ oes_api_router_uc_route_set(
  */
 oes_status_e 
 oes_api_router_uc_route_get(
-                           enum oes_access_cmd access_cmd, 
-                           unsigned int   vrid,
-                           struct oes_ip_prefix * uc_route_key_list,
-                           struct oes_uc_route_data * uc_route_data_list,
-                           unsigned short uc_route_cnt,
+                           const enum oes_access_cmd access_cmd, 
+                           const unsigned int   vrid,
+                           struct oes_ip_prefix * uc_route_key_list_p,
+                           struct oes_uc_route_data * uc_route_data_list_p,
+                           unsigned short * uc_route_cnt_p,
                            void * router_uc_route_vs_ext
                            );
 
@@ -493,9 +491,9 @@ oes_api_router_uc_route_get(
  */
 oes_status_e 
 oes_api_router_interface_cntr_enable_set(
-                                        enum oes_access_cmd access_cmd, 
-                                        unsigned int   vrid, 
-                                        unsigned int   rif,
+                                        const enum oes_access_cmd access_cmd, 
+                                        const unsigned int   vrid, 
+                                        const unsigned int   rif,
                                         void * router_interface_cntr_vs_ext
                                         );
 /**
@@ -504,7 +502,7 @@ oes_api_router_interface_cntr_enable_set(
  * @param[in] access_cmd - READ/READ CLEAR. 
  * @param[in] vrid - Virtual Router ID. 
  * @param[in] rif - Router Interface ID. 
- * @param[out]cntr - Router Interface counter extension 
+ * @param[out]cntr_p - Router Interface counter extension 
  * @param[in,out] router_cntr_alloc_vs_ext- vendor specific 
  *       extension
  *
@@ -515,10 +513,10 @@ oes_api_router_interface_cntr_enable_set(
 
 oes_status_e 
 oes_api_router_interface_cntr_get(
-                                 enum oes_access_cmd access_cmd, 
-                                 unsigned int vrid,
-                                 unsigned int rif,
-                                 struct oes_router_cntr * cntr,
+                                 const enum oes_access_cmd access_cmd, 
+                                 const unsigned int vrid,
+                                 const unsigned int rif,
+                                 struct oes_router_cntr * cntr_p,
                                  void * router_interface_cntr_vs_ext
                                  );
 
@@ -531,9 +529,10 @@ oes_api_router_interface_cntr_get(
 *       	   DELETE_ALL command deletes all multicast routes associated
 *       	   with vrid.
 * @param[in] vrid - Virtual Router ID.
-* @param[in] mc_route_key - group ip, sender IP, ingress rif (in
-*       order to configure *.G rule sender IP should be 0.0.0.0)
-* @param[in] mc_route_data -mc route action , egress rif list 
+* @param[in] mc_route_key_p - group ip, sender IP, ingress rif 
+*       (in order to configure *.G rule sender IP should be
+*       0.0.0.0)
+* @param[in] mc_route_data_p -mc route action , egress rif list 
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
 *       extension      
 *
@@ -545,10 +544,10 @@ oes_api_router_interface_cntr_get(
 
 oes_status_e
 oes_api_router_mc_route_set(
-                           enum oes_access_cmd access_cmd,
-                           unsigned int   vrid,
-                           struct oes_mc_route_key * mc_route_key,
-                           struct oes_mc_route_data * mc_route_data,
+                           const enum oes_access_cmd access_cmd,
+                           const unsigned int   vrid,
+                           const struct oes_mc_route_key * mc_route_key_p,
+                           const struct oes_mc_route_data * mc_route_data_p,
                            void * router_mc_route_vs_ext
                            );
 
@@ -576,14 +575,14 @@ oes_api_router_mc_route_set(
 *  
 * @param[in] access_cmd - GET/GET_NEXT/GET_FIRST/GET_ACTIVITY 
 * @param[in] vrid - Virtual Router ID. 
-* @param[in] mc_route_key_list  - array of mc_route_key each 
+* @param[in] mc_route_key_list_p  - array of mc_route_key each 
 *       mc_route_key  element includes group IP, sender IP,
 *       ingress rif (in order to configure
 *       *.G rule sender IP should be 0.0.0.0)
-* @param[out] mc_route_data_list  -array of mc_route_data  each 
-*       mc_route_data element includes mc route action , egress
-*       rif list
-* @param[in,out] mc_route_cnt  - array size  
+* @param[out] mc_route_data_list_p  -array of mc_route_data 
+*       each mc_route_data element includes mc route action ,
+*       egress rif list
+* @param[in,out] mc_route_cnt_p  - array size  
 * @param[in,out] router_mc_route_vs_ext- vendor specific 
 *       extension
 *  
@@ -596,11 +595,11 @@ oes_api_router_mc_route_set(
 
 oes_status_e
 oes_api_router_mc_route_get(
-                           enum oes_access_cmd access_cmd,
-                           unsigned int   vrid,
-                           struct oes_mc_route_key * mc_route_key_list,
-                           struct oes_mc_rout e_data * mc_route_data_list,
-                           unsigned short   mc_route_cnt,
+                           const enum oes_access_cmd access_cmd,
+                           const unsigned int   vrid,
+                           struct oes_mc_route_key * mc_route_key_list_p,
+                           struct oes_mc_rout e_data * mc_route_data_list_p,
+                           unsigned short  * mc_route_cnt_p,
                            void * router_mc_route_vs_ext
                            );
 
@@ -611,10 +610,10 @@ oes_api_router_mc_route_get(
 *
 * @param[in] access_cmd - ADD/DELETE
 * @param[in] vrid - Virtual Router ID. 
-* @param[in] mc_route_key  -  mc_route_key  element includes group IP, sender IP,
-*       ingress rif (in order to configure
-* @param[in] rif_list  -array of egress rif 
-* @param[in,out] rif_cnt  -egress rif array size  
+* @param[in] mc_route_key_p  -  mc_route_key  element includes 
+*       group IP, sender IP, ingress rif (in order to configure
+* @param[in] rif_list_p  -array of egress rif 
+* @param[in] rif_cnt  -egress rif array size  
 * @param[in,out] router_mc_egress_rif_vs_ext- vendor specific 
 *       extension
 *  
@@ -625,11 +624,11 @@ oes_api_router_mc_route_get(
 */
 oes_status_e 
 oes_api_router_mc_egress_rif_set(
-                                enum oes_access_cmd access_cmd,
-                                unsigned int  vrid,
-                                struct oes_mc_route_key * mc_route_key,
-                                unsigned int * rif_list,
-                                unsigned short rif_cnt,
+                                const enum oes_access_cmd access_cmd,
+                                const unsigned int  vrid,
+                                const struct oes_mc_route_key * mc_route_key_p,
+                                const unsigned int * rif_list_p,
+                                const unsigned short rif_cnt,
                                 void * router_mc_egress_rif_vs_ext
                                 );
 
@@ -641,10 +640,10 @@ oes_api_router_mc_egress_rif_set(
 *  will remain empty.
 *  
 * @param[in] vrid - Virtual Router ID. 
-* @param[in] mc_route_key  -  mc_route_key  element includs group ip, sender IP,
-*       ingress rif (in oredr to configure
-* @param[out] rif_list  -array of egress rif 
-* @param[in,out] rif_cnt  -egress rif array size  
+* @param[in] mc_route_key_p  -  mc_route_key  element includs 
+*       group ip, sender IP, ingress rif (in oredr to configure
+* @param[out] rif_list_p  -array of egress rif 
+* @param[in,out] rif_cnt_p  -egress rif array size  
 * @param[in,out] router_mc_egress_rif_vs_ext- vendor specific 
 *       extension
 *  
@@ -659,10 +658,10 @@ oes_api_router_mc_egress_rif_set(
 
 oes_status_e 
 oes_api_router_mc_egress_rif_get(
-                                unsigned int  vrid,
-                                struct oes_mc_route_key * mc_route_key,
-                                unsigned int * rif_list,
-                                unsigned short * rif_cnt,
+                                const unsigned int  vrid,
+                                const struct oes_mc_route_key * mc_route_key_p,
+                                unsigned int * rif_list_p,
+                                unsigned short * rif_cnt_p,
                                 void * router_mc_egress_rif_vs_ext
                                 );
 

@@ -25,9 +25,9 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE. 
 */
- 
-#ifndef __EOS_API_PORT_H__
-#define __EOS_API_PORT_H__
+
+#ifndef __OES_API_PORT_H__
+#define __OES_API_PORT_H__
 
 #include <oes_types.h>
 
@@ -44,8 +44,8 @@
  */
 oes_status_e
 oes_api_port_log_verbosity_level_set(
-                                int   verbosity_level
-                                );
+                                    const int   verbosity_level
+                                    );
 
 /**
  * This function gets the log verbosity level of port MODULE
@@ -75,9 +75,9 @@ oes_api_port_log_verbosity_level_get(
  */
 oes_status_e
 oes_api_port_mtu_set(
-                    int br_id,
-                    unsigned long log_port,
-                    unsigned int mtu,
+                    const int br_id,
+                    const unsigned long log_port,
+                    const unsigned int mtu,
                     void * port_mtu_vs_ext
                     );
 
@@ -98,8 +98,8 @@ oes_api_port_mtu_set(
  */
 oes_status_e
 oes_api_port_mtu_get(
-                    int br_id,
-                    unsigned long log_port,
+                    const int br_id,
+                    const unsigned long log_port,
                     unsigned int * mtu_p,
                     void * port_mtu_vs_ext
                     );
@@ -115,7 +115,7 @@ oes_api_port_mtu_get(
  *
  * @param[in] br_id - Bridge id 
  * @param[in] log_port - Logical Port ID.
- * @param[in] peed_cap-port speed capability 
+ * @param[in] speed_cap_p-port speed capability 
  * @param[in,out]sport_mtu_vs_ext - vendor specific extention 
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
@@ -124,9 +124,9 @@ oes_api_port_mtu_get(
  */
 oes_status_e
 oes_api_port_speed_capability_set(
-                                 int br_id,
-                                 unsigned long log_port,
-                                 struct oes_port_speed_capability * speed_cap,
+                                 const int br_id,
+                                 const unsigned long log_port,
+                                 const struct oes_port_speed_capability * speed_cap_p,
                                  void * port_speed_vs_ext
                                  );
 
@@ -136,7 +136,7 @@ oes_api_port_speed_capability_set(
  *
  * @param[in] br_id - Bridge id 
  * @param[in] log_port - Logical Port ID.
- * @param[out] peed_cap-port speed capability 
+ * @param[out] peed_cap_p-port speed capability 
  * @param[in,out]port_speed_capability_vs_ext - vendor specific 
  *       extention
  *  
@@ -146,9 +146,9 @@ oes_api_port_speed_capability_set(
  */
 oes_status_e
 oes_api_port_speed_capability_get(
-                                 int br_id,
-                                 unsigned long log_port,
-                                 struct oes_port_speed_capability * speed_cap,
+                                 const int br_id,
+                                 const unsigned long log_port,
+                                 struct oes_port_speed_capability * speed_cap_p,
                                  void * port_speed_capability_vs_ext
                                  );
 
@@ -158,7 +158,7 @@ oes_api_port_speed_capability_get(
  *
  * @param[in] br_id - Bridge id 
  * @param[in] log_port - Logical Port ID.
- * @param[out] peed_cap-port speed capability 
+ * @param[out] port_speed_p - port speed 
  * @param[in,out]sport_speed_vs_ext - vendor specific extention 
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
@@ -168,33 +168,29 @@ oes_api_port_speed_capability_get(
 
 oes_status_e
 oes_api_port_speed_get(
-                      int br_id,
-                      unsigned long log_port,
-		              enum oes_port_speed  * port_speed_p,
+                      const int br_id,
+                      const unsigned long log_port,
+                      enum oes_port_speed  * port_speed_p,
                       void * port_speed_vs_ext
                       );
-
-
-
-
 /**
  *  This function Sets the Port's (base) Physical Address (MAC)
  *
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical Port ID
- * @param[in] mac_addr - port MAC address
+ * @param[in] mac_addr_p - port MAC address
  * @param[in,out]port_mac_addr_vs_ext - vendor specific 
  *       extention
  * 
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_mac_addr_set(
-		                 int br_id,
-                         unsigned long log_port,
-                         struct ether_addr * mac_addr; 
+                         const int br_id,
+                         const unsigned long log_port,
+                         const struct ether_addr * mac_addr_p; 
                          void * port_mac_addr_vs_ext
                          );
 
@@ -203,18 +199,18 @@ oes_api_port_mac_addr_set(
  *
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical Port ID
- * @param[in] mac_addr - port MAC address
+ * @param[in] mac_addr_p - port MAC address
  * @param[in,out]port_mac_addr_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_mac_addr_get(
-		                 int br_id,
-                         unsigned long log_port,
+                         const int br_id,
+                         const unsigned long log_port,
                          struct ether_addr * mac_addr; 
                          void * port_mac_addr_vs_ext
                          );
@@ -229,15 +225,15 @@ oes_api_port_mac_addr_get(
  * @param[in,out] port_phys_loopback_vs_ext - vendor 
  *       specific extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_phys_loopback_set(
-                              int br_ib,
-                              unsigned long log_port,
-                              enum oes_port_phys_loopback phys_loopback,
+                              const int br_ib,
+                              const unsigned long log_port,
+                              const enum oes_port_phys_loopback phys_loopback,
                               void * port_phys_loopback_vs_ext
                               );
 
@@ -246,19 +242,19 @@ oes_api_port_phys_loopback_set(
  *  
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical port ID.
- * @param[in] phys_loopback - physical loopback type.
+ * @param[in] phys_loopback_p - physical loopback type.
  * @param[in,out] port_phys_loopback_vs_ext - vendor 
  *       specific extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_phys_loopback_get(
-                              int br_ib,
-                              unsigned long log_port,
-                              oes_port_phys_loopback_* e phys_loopback,
+                              const int br_ib,
+                              const unsigned long log_port,
+                              enum oes_port_phys_loopback_* phys_loopback_p,
                               void * port_phys_loopback_vs_ext
                               );
 
@@ -270,15 +266,15 @@ oes_api_port_phys_loopback_get(
  * @param[in] admin_state - port admin state.
  * @param[in,out] port_state_vs_ext - vendor specific extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_state_set(
-		              int br_id,
-		              unsigned long log_port,
-		              enum oes_port_admin_state admin_state,
+                      const int br_id,
+                      const unsigned long log_port,
+                      const enum oes_port_admin_state admin_state,
                       void * port_state_vs_ext
                       );
 
@@ -288,20 +284,20 @@ oes_api_port_state_set(
  *  
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical port ID.
- * @param[out] admin_state - port admin state. 
- * @param[out] oper_state - port oper state. 
+ * @param[out] admin_state_p - port admin state. 
+ * @param[out] oper_state_p - port oper state. 
  * @param[in,out] port_state_vs_ext - vendor specific extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_state_get(
-		              int br_id,
-		              unsigned long log_port,
-		              enum oes_port_admin_state * admin_state,
-                      enum oes_port_oper_state * oper_state,
+                      const int br_id,
+                      const unsigned long log_port,
+                      enum oes_port_admin_state * admin_state_p,
+                      enum oes_port_oper_state * oper_state_p,
                       void * port_state_vs_ext
                       );
 
@@ -311,24 +307,20 @@ oes_api_port_state_get(
  *  
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical Port ID (whose flow control configuration to set) 
- * @param[in] fc_param - flow control parameter - global 
- *       pause/pfc ,prio 
- * @param[in] fc_enable - enum which represent tx/rx Flow 
- * Control state. ENUM sets the mode of both RX & TX with one of 
- * 4 possible EN/DIS combinations 
+ * @param[in] fc_param_- flow control parameter - global 
+ *       pause/pfc ,prio,en/dis 
  * @param[in,out] port_port_flow_ctrl_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_flow_ctrl_set(
-                          int br_id,
-                          unsigned long log_port,
-                          struct oes_port_fc_param fc_param,
-                          struct oes_port_flow_control_param fc_enable,
+                          const int br_id,
+                          const unsigned long log_port,
+                          struct oes_port_flow_control_param * fc_param_p,
                           void * port_flow_ctrl_vs_ext
                           );
 
@@ -340,118 +332,114 @@ oes_api_port_flow_ctrl_set(
  * @param[in] br_id - Bridge id
  * @param[in] log_port - Logical Port ID (whose flow control configuration to set) 
  * @param[in] fc_param - flow control parameter - global 
- *       pause/pfc ,prio 
- * @param[out] fc_enable - enum which represent tx/rx Flow 
- * Control state. ENUM sets the mode of both RX & TX with one of 
- * 4 possible EN/DIS combinations 
+ *       pause/pfc ,prio
  * @param[in,out] port_port_flow_ctrl_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error.  
  */
 oes_status_e
 oes_api_port_flow_ctrl_get(
-                          int br_id,
-                          unsigned long log_port,
-                          struct oes_port_fc_param fc_param,
-                          struct oes_port_flow_control_param fc_enable,
+                          const int br_id,
+                          const unsigned long log_port,
+                          struct oes_port_flow_control_param * fc_param_p,
                           void * port_flow_ctrl_vs_ext
                           );
 
 /**
  * This function Retrieves the Port IEEE 802.3 Counters 
- *
- * @param[in] br_id - Bridge id 
- * @param[in] access_cmd -  READ/READ CLEAR  
+ * 
+ * @param[in] access_cmd -  READ/READ CLEAR 
+ * @param[in] br_id - Bridge id  
  * @param[in] log_port - Logical Port ID.
  * @param[out] cntr_ieee_802_dot_3_p - IEEE 802.3 counters entry.
  * @param[in,out] port_cntr_ieee_802_dot_3_vs_ext - vendor 
  *       specific extention
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_cntr_ieee_802_dot_3_get(
-		                            int br_id,
-                                    enum oes_access_cmd access_cmd,
-		                            unsigned long log_port,
-		                            struct oes_port_cntr_ieee_802_dot_3 * cntr_ieee_802_dot_3_p
+                                    const enum oes_access_cmd access_cmd,
+                                    const int br_id,
+                                    const unsigned long log_port,
+                                    struct oes_port_cntr_ieee_802_dot_3 * cntr_ieee_802_dot_3_p
                                     void * port_cntr_ieee_802_dot_3_vs_ext
                                     );
-		
+
 
 /**
  * This function Retrieves the Port RFC 2863 Counters 
- *
- * @param[in] br_id - Bridge id 
- * @param[in] access_cmd -  READ/READ CLEAR   
+ *  
+ * @param[in] access_cmd -  READ/READ CLEAR 
+ * @param[in] br_id - Bridge id  
  * @param[in] log_port - Logical Port ID.
  * @param[out] cntr_rfc_2863_p - RFC 2863 counters entry.
  * @param[in,out] port_cntr_rfc_2863_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_cntr_rfc_2863_get(
-		                      int br_id,
-                              enum oes_access_cmd access_cmd,
-		                      unsigned long log_port,
-		                      struct oes_port_cntr_rfc_2863 *cntr_rfc_2863_p,
+                              const enum oes_access_cmd access_cmd,
+                              const int br_id,
+                              const  unsigned long log_port,
+                              struct oes_port_cntr_rfc_2863 * cntr_rfc_2863_p,
                               void * port_cntr_rfc_2863_vs_ext
-		                      );
+                              );
 
 /**
  *  This function Retrieves the Port RFC 2819 Counters from the
  *  SDK.
  *  
- * @param[in] br_id - Bridge id 
- * @param[in] enum oes_access_cmd access_cmd, 
+ * @param[in] access_cmd -READ/READ CLEAR 
+ * @param[in] br_id - Bridge id  
  * @param[in] log_port - Logical Port ID.
  * @param[out] cntr_rfc_2819_p - RFC 2819 counters entry.
  * @param[in,out] port_cntr_rfc_2819_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_cntr_rfc_2819_get(
-		                      int br_ib,
-                              enum oes_access_cmd access_cmd,
-		                      unsigned long log_port,
-		                      struct oes_port_cntr_rfc_2819 *cntr_rfc_2819_p,
+                              const enum oes_access_cmd access_cmd,
+                              const int br_ib,
+                              const unsigned long log_port,
+                              struct oes_port_cntr_rfc_2819 *cntr_rfc_2819_p,
                               void * port_cntr_rfc_2819_vs_ext
-		                      );
+                              );
 
 /**
  *  This function Retrieves the Port RFC 3635 Counters from the
  *  SDK.
- *
- * @param[in] br_id - Bridge id 
- * @param[in] enum oes_access_cmd access_cmd,  
+ * 
+ * @param[in] access_cmd -READ/READ CLEAR  
+ * @param[in] br_id - Bridge id  
  * @param[in] log_port - Logical Port ID.
  * @param[out] cntr_rfc_3635_p - RFC 3635 counters entry.
  * @param[in,out] port_cntr_rfc_3635_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_cntr_rfc_3635_get(
-                              int br_ib,
-                              enum oes_access_cmd access_cmd,
-                              unsigned long log_port,
-		                      struct oes_port_cntr_rfc_3635 *cntr_rfc_3635_p,
+                              const enum oes_access_cmd access_cmd,
+                              const int br_ib,
+                              const unsigned long log_port,
+                              struct oes_port_cntr_rfc_3635 *cntr_rfc_3635_p,
                               void * port_cntr_rfc_3635_vs_ext
-		                      );
+                              );
 
 
 
@@ -459,26 +447,24 @@ oes_api_port_cntr_rfc_3635_get(
 /**
  * This function Binds / Un-binds a policer to / from a port
  * Cannot bind policer to LAG member port
- *
- * @param[in] br_id - Bridge id
- * @param[in] cmd - EOS_ACCESS_CMD_BIND: bind a policer to port.
- *                  EOS_ACCESS_CMD_UNBIND: unbind a policer from
- *                  a port
+ *  
+ * @param[in] access_cmd -BIND/UNBIND 
+ * @param[in] br_id - Bridge id 
  * @param[in] log_port - Logical Port ID
  * @param[in] policer_id - Policer ID 
  * @param[in,out] port_policer_bind_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_policer_bind_set(
-                             int br_id,
-                             enum oes_access_cmd cmd,
-                             unsigned long log_port,
-                             unsigned int policer_id,
+                             const enum oes_access_cmd access_cmd,
+                             const int br_id,
+                             const unsigned long log_port,
+                             const unsigned int policer_id,
                              void *  port_policer_bind_vs_ext
                              );
 
@@ -489,27 +475,27 @@ oes_api_port_policer_bind_set(
  * of a configured port. In order to remove sFlow 
  * sampling from the port use access cmd DESTROY. 
  *  
+ * @param[in] access_cmd -CREATE/DESTROY/EDIT  
  * @param[in] br_id - Bridge id 
- * @param[in] cmd - access cmd (CREATE/DESTROY/EDIT) 
  * @param[in] log_port - Logical Port ID. 
  * @param[in] sflow_params - sFlow related configuration 
  * params(Deviation>0); ignored when CMD=DESTROY. 
  * @param[in,out] port_sflow_vs_ext - vendor specific extention
  *
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
- * @return EOS_STATUS_NO_RESOURCES if out of resources for sFlow 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_NO_RESOURCES if out of resources for sFlow 
  *         policer
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_sflow_set(
-		              int br_id,           	
-                      enum oes_access_cmd cmd,
-		              unsigned long log_port,
-		              struct oes_port_sflow_params *  sflow_params,
+                      const enum oes_access_cmd access_cmd,
+                      const int br_id,     
+                      const unsigned long log_port,
+                      const struct oes_port_sflow_params *  sflow_params,
                       void *  port_sflow_vs_ext
-		              );
+                      );
 
 
 /**
@@ -522,17 +508,17 @@ oes_api_port_sflow_set(
  * params(Deviation>0); ignored when CMD=DESTROY. 
  * @param[in,out] port_sflow_vs_ext - vendor specific extention
  *
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR: Input parameters error. 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR: Input parameters error. 
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_sflow_get(
-		              int br_ib,
-		              unsigned long log_port,
+                      const int br_ib,
+                      const unsigned long log_port,
                       struct oes_port_sflow_params *  sflow_params,
                       void * port_sflow_vs_ext
-		              );
+                      );
 
 /**
  * This function controls loopback filter state of the port  
@@ -542,15 +528,15 @@ oes_api_port_sflow_get(
  * @param[in,out] port_loopback_filter_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR if Invalid parameter was supplied
- * @return EOS_STATUS_ERROR otherwise 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR if Invalid parameter was supplied
+ * @return OES_STATUS_ERROR otherwise 
  */
 oes_status_e
 oes_api_port_loopback_filter_set(
-		                        int br_ib,
-        	                    unsigned long log_port,
-		                        enum oes_port_loopback_filter_mode lbf_mode,
+                                const int br_ib,
+                                const unsigned long log_port,
+                                const enum oes_port_loopback_filter_mode lbf_mode,
                                 void * port_loopback_filter_vs_ext
                                 );
 
@@ -563,15 +549,15 @@ oes_api_port_loopback_filter_set(
  * @param[in,out] port_loopback_filter_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS if operation completes successfully
- * @return EOS_STATUS_PARAM_ERROR if Invalid parameter was supplied
- * @return EOS_STATUS_ERROR otherwise 
+ * @return OES_STATUS_SUCCESS if operation completes successfully
+ * @return OES_STATUS_PARAM_ERROR if Invalid parameter was supplied
+ * @return OES_STATUS_ERROR otherwise 
  */
 oes_status_e
 oes_api_port_loopback_filter_get(
-		                        int br_ib,
-        	                    unsigned long log_port,
-		                        enum oes_port_loopback_filter_mode  * lbf_mode,
+                                const int br_ib,
+                                const unsigned long log_port,
+                                enum oes_port_loopback_filter_mode  * lbf_mode,
                                 void * port_loopback_filter_vs_ext
                                 );
 
@@ -586,24 +572,24 @@ oes_api_port_loopback_filter_get(
  * @param[in] access_cmd - SET/ADD/DELETE/DELETE_ALL 
  * @param[in] br_id -bridge ID  
  * @param[in] log_port - Logical Port ID.
- * @param[in] isolated_port_list - list of logical ports
+ * @param[in] isolated_port_list_p - list of logical ports
  * @param[in] port_cnt - number of logical ports in the list
  * @param[in,out] port_isolation_vs_ext - vendor specific 
  *       extention
  *  
- * @return EOS_STATUS_SUCCESS - Operation completes successfully. 
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
 oes_api_port_isolation_set(
-		                  enum oes_access_cmd	access_cmd,
-                          int br_id,
-		                  unsigned long  log_port,
-		                  unsigned long  isolated_port_list[],
-		                  unsigned short port_cnt,
+                          const enum oes_access_cmd   access_cmd,
+                          const int br_id,
+                          const unsigned long  log_port,
+                          const unsigned long  * isolated_port_list_p,
+                          const unsigned short port_cnt,
                           void * port_isolation_vs_ext
-		                  );
+                          );
 
 /**
  * This function retrieves the isolation group of the port (a list of ports from which
@@ -611,23 +597,23 @@ oes_api_port_isolation_set(
  * 
  * @param[in] log_port - Logical Port ID. 
  * param[in] br_id - Bridge id 
- * @param[out] log_port_list - list of logical ports
+ * @param[out] log_port_list_p - list of logical ports
  * @param[in,out] port_cnt - In: arry size Out: Number of 
  * Logical Ports in the isolation group.
  *
- * @return EOS_STATUS_SUCCESS - Operation completes successfully. 
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully. 
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e
 oes_api_port_isolation_get(
-		                  enum oes_access_cmd	access_cmd,
-                          int br_id,
-		                  unsigned long  log_port,
-		                  unsigned long  isolated_port_list[],
-		                  unsigned short * port_cnt,
+                          const enum oes_access_cmd   access_cmd,
+                          const int br_id,
+                          const unsigned long  log_port,
+                          unsigned long  * isolated_port_list_p,
+                          unsigned short * port_cnt,
                           void * port_isolation_vs_ext
-		                  );
+                          );
 
-#endif /* __EOS_API_PORT_H__ */
+#endif /* __OES_API_PORT_H__ */

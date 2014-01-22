@@ -26,8 +26,8 @@
 * SOFTWARE. 
 */
 
-#ifndef __EOS_API_LAG_H__
-#define __EOS_API_LAG_H__
+#ifndef __OES_API_LAG_H__
+#define __OES_API_LAG_H__
 
 #include <oes_types.h>
 
@@ -35,7 +35,7 @@
  *  API functions
  ***********************************************/
 /**
- * This function sets the log verbosity level of FDB MODULE
+ * This function sets the log verbosity level of LAG MODULE
  * @param[in]  verbosity_level  - LAG module verbosity level
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
@@ -44,12 +44,12 @@
  */
 oes_status_e
 oes_api_lag_log_verbosity_level_set(
-                               int   verbosity_level
+                               const int   verbosity_level
                                );
 
 /**
- * This function gets the log verbosity level of FDB MODULE
- * @param[out]  verbosity_level_p  - FDB module verbosity level
+ * This function gets the log verbosity level of LAG MODULE
+ * @param[out]  verbosity_level_p  - LAG module verbosity level
  *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
  * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
@@ -68,54 +68,57 @@ oes_api_lag_log_verbosity_level_get(
  *  Note:
  *  - All ports must be DELETEd from LAG ports group before the group is DESTROYed.
  *  - Cannot create a lag group and add ports to it in the same api call.
- * @param[in] br_id - Bridge id 
- * @param[in] access_cmd - CREATE/DESTROY/ADD/DELETE.
+ * 
+ * @param[in] access_cmd - CREATE/DESTROY/ADD/DELETE. 
+ * @param[in] br_id - Bridge id  
  * @param[in,out] lag_port_p -	In: Already created LAG ports group ID.
  * 				Out: Newly created LAG ports group ID.
- * @param[in] log_port_list - List of Logical Ports to ADD/DELETE to/from a LAG ports group.
+ * @param[in] log_port_list_p - List of Logical Ports to 
+ *       ADD/DELETE to/from a LAG ports group.
  * @param[in] port_cnt - Number of Logical Ports to ADD/DELETE 
  *       to/from a LAG ports group.
  * @param[in,out] lag_port_group_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_lag_port_group_set(
-                          int br_id,
-                          enum oes_access_cmd access_cmd,
+                          const enum oes_access_cmd access_cmd,
+                          const int br_id,
                           unsigned long *lag_port_p,
-                          unsigned long  log_port_list[],
-                          unsigned short     port_cnt,
+                          const unsigned long  log_port_list_p,
+                          const unsigned short     port_cnt,
                           void * lag_port_group_vs_ext
                           );
 
 /**
  *  This function retrieves an existing LAG's ports group from the SDK.
- *
  *  Note:
  *  If the output ports list is NULL, only the number of ports in the LAG's retrieved.
- * @param[in] br_id - Bridge id 
- * @param[in] access_cmd - CREATE/DESTROY/ADD/DELETE.
+ *  
+ * @param[in] access_cmd - CREATE/DESTROY/ADD/DELETE. 
+ * @param[in] br_id - Bridge id  
  * @param[in] lag_port -	In: Already created LAG ports 
  *              group ID. Out: Newly created LAG ports group ID.
- * @param[out] log_port_list - List of Logical Ports to 
+ * @param[out] log_port_list_p - List of Logical Ports to 
  *       ADD/DELETE to/from a LAG ports group.
- * @param[out] port_cnt - Number of Logical Ports to ADD/DELETE 
- *       to/from a LAG ports group.
+ * @param[out] port_cnt_p - Number of Logical Ports to 
+ *       ADD/DELETE to/from a LAG ports group.
  * @param[in,out] lag_port_group_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ *  
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e
 oes_api_lag_port_group_get(
-                          int br_id,
-                          enum oes_access_cmd access_cmd,
-                          unsigned long  lag_port,
-                          unsigned long  log_port_list[],
+                          const enum oes_access_cmd access_cmd,
+                          const int br_id,
+                          const unsigned long  lag_port,
+                          unsigned long  log_port_list_p,
                           unsigned short   * port_cnt_p,
                           void * lag_port_group_vs_ext
                           );
@@ -130,17 +133,17 @@ oes_api_lag_port_group_get(
  * @param[in] collector_mode collector mode
  * @param[in,out] lag_port_collector_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
 oes_api_lag_port_collector_set(
-                              int br_id,
-	                          unsigned long lag_log_port,
-	                          unsigned long log_port,
-	                          enum oes_collector_mode collector_mode,
+                              const int br_id,
+	                          const unsigned long lag_log_port,
+	                          const unsigned long log_port,
+	                          const enum oes_collector_mode collector_mode,
                               void * lag_port_collector_vs_ext
                               );
 
@@ -154,17 +157,17 @@ oes_api_lag_port_collector_set(
  * @param[in]distributor _mode  distributor mode
  * @param[in,out] lag_port_collector_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 
 oes_status_e 
 oes_api_lag_port_distributor_set(
-                                int br_id,
-	                            unsigned long lag_log_port,
-	                            unsigned long log_port,
-	                            enum oes_collector_mode  distributor_mode,
+                                const int br_id,
+	                            const unsigned long lag_log_port,
+	                            const unsigned long log_port,
+	                            const enum oes_collector_mode  distributor_mode,
                                 void * lag_port_distributor_vs_ext
                                 );
 
@@ -172,17 +175,17 @@ oes_api_lag_port_distributor_set(
  *  This function configures the flow indicators that impact the
  *  LAG hash distribution function.
  *  @param[in] br_id - Bridge id
- *  @param[in] oes_lag_hash_param - Hash parameters
+ *  @param[in] oes_lag_hash_param_p - Hash parameters
  *  @param[in,out] lag_hash_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
 oes_api_lag_hash_set(
-                    int br_id, 
-			        struct eos_lag_hash_param *lag_hash_param,
+                    const int br_id, 
+			        const struct eos_lag_hash_param * lag_hash_param_p,
                     void * lag_hash_vs_ext
                     );
 
@@ -196,16 +199,16 @@ oes_api_lag_hash_set(
  *  @param[out] oes_lag_hash_param_p - Hash parameters
  *  @param[in,out] lag_hash_vs_ext - vendor specific 
  *       extention
- * @return EOS_STATUS_SUCCESS - Operation completes successfully.
- * @return EOS_STATUS_PARAM_ERROR - Parameter is invalid.
+ * @return OES_STATUS_SUCCESS - Operation completes successfully.
+ * @return OES_STATUS_PARAM_ERROR - Parameter is invalid.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
 oes_api_lag_hash_get(
-                    int br_id, 
+                    const int br_id, 
                     struct oes_lag_hash_param * lag_hash_param_p,
                     void * lag_hash_vs_ext
                     );
 
 
-#endif /* __EOS_API_LAG_H__ */
+#endif /* __OES_API_LAG_H__ */
