@@ -1,4 +1,3 @@
-
 /* This software is available to you under a choice of one of two
 * licenses.  You may choose to be licensed under the terms of the GNU
 * General Public License (GPL) Version 2, available from the file
@@ -383,6 +382,11 @@ struct oes_event_fdb{
     unsigned long log_port;                  /**< Logical port */
 };
 
+enum oes_fdb_learn_mode {
+	OES_FDB_DONT_LEARN 		= 1,
+	OES_FDB_AUTO_LEARN 		= 2,
+	OES_FDB_CONTROL_LEARN	= 3
+};
 
 
 
