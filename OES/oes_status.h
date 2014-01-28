@@ -26,8 +26,8 @@
 * SOFTWARE. 
 */
 
-#ifndef __HAL_STATUS_H__
-#define __HAL_STATUS_H__
+#ifndef __OES_STATUS_H__
+#define __OES_STATUS_H__
 
 
 
@@ -39,21 +39,21 @@
  * sx_status_t
  * Enumerated type - Provides functions' return values.
  */
-typedef enum hal_status {
-	HAL_STATUS_SUCCESS				= 0,
-	HAL_STATUS_ERROR					= 1,
-    HAL_STATUS_CMD_UNSUPPORTED				= 8,
-    HAL_STATUS_PARAM_ERROR				= 13,
-    HAL_STATUS_PARAM_EXCEEDS_RANGE			= 14,
-    HAL_STATUS_NO_MEMORY				= 6,
-	HAL_STATUS_HAL_NOT_INITIALIZED			= 2,
-	HAL_STATUS_ENTRY_NOT_FOUND			= 21,
-	HAL_STATUS_ENTRY_ALREADY_EXISTS			= 22,
+typedef enum oes_status {
+	OES_STATUS_SUCCESS				= 0,
+	OES_STATUS_ERROR				= 1,
+    	OES_STATUS_CMD_UNSUPPORTED			= 8,
+    	OES_STATUS_PARAM_ERROR				= 13,
+    	OES_STATUS_PARAM_EXCEEDS_RANGE			= 14,
+    	OES_STATUS_NO_MEMORY				= 6,
+	OES_STATUS_OES_NOT_INITIALIZED			= 2,
+	OES_STATUS_ENTRY_NOT_FOUND			= 21,
+	OES_STATUS_ENTRY_ALREADY_EXISTS			= 22,
 	
-	HAL_STATUS_MIN   				= HAL_STATUS_SUCCESS,
-	HAL_STATUS_MAX   				= 
-} hal_status_e;
+	OES_STATUS_MIN   				= OES_STATUS_SUCCESS,
+	OES_STATUS_MAX   				= OES_STATUS_ENTRY_ALREADY_EXISTS
+} oes_status_e;
 
 
 
-#endif /* __SX_STATUS_H__ */
+#endif /* __OES_STATUS_H__ */
