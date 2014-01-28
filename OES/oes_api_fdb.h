@@ -76,7 +76,7 @@ oes_api_fdb_log_verbosity_level_get(
 
 oes_status_e 
 oes_api_fdb_age_time_set(
-                        const nt br_id,
+                        const int br_id,
                         const unsigned int  age_time,
                         void * fdb_age_time_vs_ext
                         );
@@ -326,10 +326,10 @@ oes_api_fdb_mc_mac_addr_get(
                            const int br_id,
                            const unsigned short vid,
                            const struct ether_addr mc_addr,
-                           unsigned long * log_port_list_p
+                           unsigned long * log_port_list_p,
                            unsigned short  *    port_cnt_p,
                            void * fdb_mc_mac_addr_vs_ext
-                           ):
+                           );
 
 
 /**
