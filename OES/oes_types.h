@@ -25,6 +25,10 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE. 
 */
+
+#ifndef OES_TYPES__
+#define OES_TYPES__
+
 /************************************************************************************************************/
 /**************************** enum ************************************************************************/
 
@@ -208,9 +212,9 @@ enum oes_fdb_event_type {
 };
 /************************************************************************************************************/
 /**************************** struct ************************************************************************/
-union oes_span_type_format {
-    struct oes_span_local                      local_eth;    
-    struct oes_span_remote_eth_l2              remote_eth_l2;    
+
+struct  oes_span_local {
+    unsigned char   tclass;  /**< trafic class */
 };
 
 struct  oes_span_remote_eth_l2 {
@@ -220,8 +224,9 @@ struct  oes_span_remote_eth_l2 {
     struct ether_addr   mac; 
 };
 
-struct  oes_span_local {
-    unsigned char   tclass;  /**< trafic class */
+union oes_span_type_format {
+    struct oes_span_local                      local_eth;
+    struct oes_span_remote_eth_l2              remote_eth_l2;
 };
 
 struct oes_span_session_params {
@@ -309,7 +314,7 @@ struct oes_l3_interface {
     enum oes_interface_type type;       /**< Router Interface type vlan or router port  */
     union {
         struct {
-            int br_id br;       /**< bridge ID */
+            int br_id;       /**< bridge ID */
             unsigned short vlan;    /**< VLAN ID */
         } vlan;             /**< VLAN Router Interface */
         struct {
@@ -345,7 +350,7 @@ struct oes_neigh_data {
 };
 
 struct oes_ip_prefix {
-    struct oes_ip_addr;
+    struct oes_ip_addr prefix;
     unsigned int prefix_len;
 };
 
@@ -375,12 +380,6 @@ struct oes_mc_route_key {
 };
 
 
-struct oes_mc_route_data {
-    struct oes_mc_router_action  action;
-    unsigned int * rif_list,
-    unsigned short rif_cnt,
-};
-
 struct oes_mc_router_action {
     unsigned char  enable_assert;
     unsigned char  enable_rpf;
@@ -388,20 +387,11 @@ struct oes_mc_router_action {
     enum oes_router_action  action;             
 };
 
-struct oes_event_info {
-    enum oes_event      event_id; /**<!event ID */
-    union oes_event_data        event_info; /**<! event info */
+struct oes_mc_route_data {
+    struct oes_mc_router_action  action;
+    unsigned int * rif_list;
+    unsigned short rif_cnt;
 };
-
-
-
-
-
-union oes_event_data {
-    struct oes_event_port port_event;/**<! port up/down event data */
-    struct oes_event_fdb  fdb_event;/**<! FDB  event data */
-};
-
 
 struct oes_event_port {
     unsigned int       log_port;/**<! logical port */
@@ -409,30 +399,41 @@ struct oes_event_port {
 };
 
 
-struct oes_event_fdb {
-    enum oes_fdb_event_type  fbd_event_type;  /**< learn/age/flush */  
-    union oes_fdb_event_data {
-        struct { /**<  for learn/age */  
-            struct oes_fdb_uc_mac_addr_params fdb_entry;   
-        }fdb_entry;             
-        struct {/**<  for flush port */ 
-            unsigned long port; /**< Port */
-        }port; 
-        struct {/**<  for flush vid */ 
-            unsigned char vid; /**< vlan id */
-        }vid;  
-        struct {/**<  for flush vid */ 
-            unsigned long port; /**< Port */
-            unsigned char vid; /**< vlan id  */
-        }port_vid;               
-    };         
+struct oes_fdb_entry{ /**<  for learn/age */
+    struct oes_fdb_uc_mac_addr_params fdb_entry;
+};
+struct oes_fdb_port {/**<  for flush port */
+    unsigned long port; /**< Port */
+};
+struct oes_fdb_vid{/**<  for flush vid */
+    unsigned char vid; /**< vlan id */
+};
+struct oes_fdb_port_vid{/**<  for flush vid */
+    unsigned long port; /**< Port */
+    unsigned char vid; /**< vlan id  */
 };
 
+union oes_fdb_event_data {
+    struct oes_fdb_entry fdb_entry;
+    struct oes_fdb_port fdb_port;
+    struct oes_fdb_vid fdb_vid;
+    struct oes_fdb_port_vid fdb_port_vid;
+};
 
+struct oes_event_fdb {
+    enum oes_fdb_event_type  fbd_event_type;  /**< learn/age/flush */  
+    union oes_fdb_event_data fdb_event_data;
 
+};
 
+union oes_event_data {
+    struct oes_event_port port_event;/**<! port up/down event data */
+    struct oes_event_fdb  fdb_event;/**<! FDB  event data */
+};
 
+struct oes_event_info {
+    enum oes_event      event_id; /**<!event ID */
+    union oes_event_data        event_info; /**<! event info */
+};
 
-
-
-
+#endif
