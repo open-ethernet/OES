@@ -70,7 +70,8 @@ oes_api_fdb_log_verbosity_level_get(
  *       extention .
  * 
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 
@@ -91,7 +92,8 @@ oes_api_fdb_age_time_set(
  * @param[in,out] fdb_age_time_vs_ext - vendor specific 
  *       extention .
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e 
@@ -102,26 +104,32 @@ oes_api_fdb_age_time_get(
                         );
 
 /**
- *  This function adds UC MAC and UC LAG MAC entries in the FDB.
- *  currently it support only static mac insertion.
- *  
+ *  This function adds/deletes UC MAC and UC LAG MAC entries to the FDB.
+ *  In case the operation failed on one entry (or more), an error will be
+ *  returned, mac_entry_list_p will store those entries, and their quantity
+ *  will be stored in mac_cnt.
+ *  If the operation finished successfully: SUCCESS will be returned, and
+ *  mac_cnt and mac_entry_list_p won't be changed.
+ *
  * @param[in] access_cmd - add/ delete 
  * @param[in] br_id - Bridge id  
- * @param[in] mac_entry_list_p- mac record arry pointer . On 
+ * @param[in,out] mac_entry_list_p- mac record arry pointer . On
  *       deletion, entry_type is DONT_CARE
- * @param[in] mac_cnt - mac record arry size  
+ * @param[in,out] mac_cnt - mac record arry size
  * @param[in] fdb_uc_mac_addr_vs_ext - vendor specific extention
  *
+ *
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
- * @return OES_STATUS_ERROR general error. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
+ * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
 oes_api_fdb_uc_mac_addr_set(
                            const enum oes_access_cmd access_cmd,
                            const int br_id,
                            const struct oes_fdb_uc_mac_addr_params * mac_entry_list_p,
-                           const unsigned short   mac_cnt,
+                           const unsigned short * mac_cnt,
                            void * fdb_uc_mac_addr_vs_ext
                            );
 
@@ -154,7 +162,8 @@ oes_api_fdb_uc_mac_addr_set(
  * @param[in,out] fdb_uc_mac_addr_vs_ext - vendor specific 
  *       extention
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e 
@@ -175,7 +184,8 @@ oes_api_fdb_uc_mac_addr_get(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e 
@@ -197,7 +207,8 @@ oes_api_fdb_uc_count(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
@@ -222,7 +233,8 @@ oes_api_fdb_uc_limit_port_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
@@ -244,7 +256,8 @@ oes_api_fdb_uc_limit_vlan_set(
  *       extention
  * 
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
@@ -266,7 +279,8 @@ oes_api_fdb_uc_limit_port_get(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error. 
  */
 oes_status_e
@@ -290,7 +304,8 @@ oes_api_fdb_uc_limit_vid_get(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -317,7 +332,8 @@ oes_api_fdb_mc_mac_addr_set(
 *        extention
 *  
  * @return OES_STATUS_SUCCESS - Operation completes successfully
- * @return OES_STATUS_PARAM_ERROR - Unsupported verbosity_level
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 
@@ -380,7 +396,8 @@ oes_api_fdb_uc_flush_port_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  *
  */
@@ -402,11 +419,12 @@ oes_api_fdb_uc_flush_vid_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
-oes_api_fdb_uc_flush_port_fid_set(
+oes_api_fdb_uc_flush_port_vid_set(
                                  const int br_id,
                                  const unsigned short vid,
                                  const unsigned long log_port,
@@ -422,7 +440,8 @@ oes_api_fdb_uc_flush_port_fid_set(
  * @param[in,out] fdb_mc_flush_vs_ext- vendor specific extention 
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -441,14 +460,15 @@ oes_api_fdb_mc_flush_all_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
 */
 oes_status_e 
 oes_api_fdb_mc_flush_vid_set(
                             const int br_id,
                             const unsigned short vid,
-                            void * fdb_mc_fid_flush_vs_ext
+                            void * fdb_mc_vid_flush_vs_ext
                             );
 /**
  *  This function sets the FDB learning mode 
@@ -461,7 +481,8 @@ oes_api_fdb_mc_flush_vid_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -482,7 +503,8 @@ oes_api_fdb_learn_mode_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -506,7 +528,8 @@ oes_api_fdb_learn_mode_get(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -529,7 +552,8 @@ oes_api_fdb_vid_learn_mode_set(
  *       extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -553,7 +577,8 @@ oes_api_fdb_vid_learn_mode_get(
  *       specific extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
@@ -576,7 +601,8 @@ oes_api_fdb_port_learn_mode_set(
  *       specific extention
  *  
  * @return OES_STATUS_SUCCESS if operation completes successfully. 
- * @return OES_STATUS_PARAM_ERROR if parameters exceed range. 
+ * @return OES_STATUS_PARAM_ERROR if any input parameters is invalid.
+ * @return OES_STATUS_PARAM_EXCEEDS_RANGE if parameters exceed range.
  * @return OES_STATUS_ERROR general error.
  */
 oes_status_e 
