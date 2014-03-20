@@ -131,7 +131,7 @@ oes_api_span_mirror_set(
                        const enum oes_access_cmd access_cmd,
                        const int br_id,
                        const  long log_port,
-                       const enum oes_mirror_direction * mirror_direction_p,
+                       const enum oes_mirror_direction  mirror_direction,
                        const unsigned char span_session_id,
                        void *  span_mirror_vs_ext
                        );
@@ -155,8 +155,8 @@ oes_status_e
 oes_api_span_mirror_get(
                        const int br_id,
                        const unsigned long log_port,
-                       enum oes_mirror_direction * mirror_direction_p,
-                       const unsigned char  span_session_id,
+                       const enum oes_mirror_direction  mirror_direction,
+                       unsigned char  * span_session_id_p,
                        void *  span_mirror_vs_ext
                        );
 

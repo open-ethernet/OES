@@ -569,7 +569,7 @@ oes_api_port_loopback_filter_get(
  * Delete - remove ports from isolation group
  * Delete All - empty isolation group
  * 
- * @param[in] access_cmd - SET/ADD/DELETE/DELETE_ALL 
+ * @param[in] access_cmd - CREATE/ADD/DELETE/DESTROY 
  * @param[in] br_id -bridge ID  
  * @param[in] log_port - Logical Port ID.
  * @param[in] isolated_port_list_p - list of logical ports
@@ -608,7 +608,6 @@ oes_api_port_isolation_set(
 
 oes_status_e
 oes_api_port_isolation_get(
-                          const enum oes_access_cmd   access_cmd,
                           const int br_id,
                           const unsigned long  log_port,
                           unsigned long  * isolated_port_list_p,
