@@ -127,7 +127,7 @@ oes_status_e
 oes_api_fdb_uc_mac_addr_set(
                            const enum oes_access_cmd access_cmd,
                            const int br_id,
-                           const struct oes_fdb_uc_mac_addr_params * mac_entry_list_p,
+                           struct oes_fdb_uc_mac_addr_params * mac_entry_list_p,
                            unsigned short * mac_cnt,
                            void * fdb_uc_mac_addr_vs_ext
                            );
