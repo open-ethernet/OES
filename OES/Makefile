@@ -4,7 +4,6 @@ CFLAGS += $(EXTRA_BUILD_CFLAGS) -g -ggdb -Wall -Werror -fPIC
 CFILES= oes_api_event.c oes_api_fdb.c
  
 TARGET= liboesstub.so
-INCLUDES= -I ../OES
 
 all:
 	make $(TARGET)
